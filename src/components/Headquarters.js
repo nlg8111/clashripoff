@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 
 export default class Headquarters extends Component {
     render() {
         return <View style={[this.props.style, styles.hq]}>
-            HQ
+            <Text>HQ</Text>
         </View>
     }
 }
 
 const styles = StyleSheet.create({
     hq: {
-        border: '1px solid white',
-        width: 50,
-        height: 50
+        borderColor: "white",
+        borderWidth: 1,
+        width: 100,
+        height: 100
     },
 });

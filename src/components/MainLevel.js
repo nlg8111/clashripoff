@@ -1,17 +1,21 @@
 import React, {Component} from 'react'
-import {View, StyleSheet} from 'react-native'
-import Headquarters from 'Headquarters'
+import {Text, View, StyleSheet} from 'react-native'
+import Headquarters from './Headquarters'
 
 export default class MainLevel extends Component {
     render() {
         return <View style={styles.level}>
-            <Headquarters style={ styles.opponentHq } />
-            <Headquarters style={ styles.playerHq } />
+            <View style={styles.levelSide}>
+                <Headquarters />
+            </View>
+            <View style={styles.levelSide}>
+                <Headquarters />
+            </View>
         </View>
     }
 }
 
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
     level: {
         backgroundColor: "black",
         flex: 1,
@@ -19,10 +23,9 @@ const styles = Stylesheet.create({
         alignItems: "center",
         justifyContent: 'center'
     },
-    playerHq: {
+    levelSide: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    opponentHq: {
-        flex: 1,
-    }
 });
