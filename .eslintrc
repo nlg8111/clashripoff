@@ -31,7 +31,9 @@
       2
     ]
   },
-  "globals": { },
+  "globals": {
+    "it": true
+  },
   "plugins": [
     "react"
   ]
