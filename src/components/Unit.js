@@ -5,7 +5,9 @@ export default class Unit extends Component {
 
   constructor() {
     super()
-    this.state = { progress: 0.0 }
+    this.state = {
+      progress: 0.0
+    }
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {View, StyleSheet} from "react-native"
 import Headquarters from "./Headquarters"
-import Unit from "./Unit"
+import UnitContainer from "./UnitContainer"
 
 export default class MainLevel extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class MainLevel extends Component {
         <Headquarters />
       </View>
       <View>
-          <Unit />
+          <UnitContainer />
       </View>
       <View style={styles.levelSide}>
         <Headquarters />
@@ -21,7 +21,7 @@ export default class MainLevel extends Component {
 
 const styles = StyleSheet.create({
   level: {
-    backgroundColor: "black",
+    backgroundColor: "green",
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
