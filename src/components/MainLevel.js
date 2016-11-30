@@ -1,12 +1,16 @@
 import React, {Component} from "react"
 import {View, StyleSheet} from "react-native"
 import Headquarters from "./Headquarters"
+import Unit from "./Unit"
 
 export default class MainLevel extends Component {
   render() {
     return <View style={styles.level}>
       <View style={styles.levelSide}>
         <Headquarters />
+      </View>
+      <View>
+          <Unit />
       </View>
       <View style={styles.levelSide}>
         <Headquarters />
