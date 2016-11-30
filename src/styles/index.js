@@ -26,5 +26,12 @@ export default StyleSheet.create({
     margin: 15,
     fontSize: 20,
     borderWidth: 1,
+  },
+  unit: {
+    borderWidth: 1,
+    borderRadius: 100,
+    borderColor: "#ffffff",
+    width: 15,
+    height: 15
   }
 })

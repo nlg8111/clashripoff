@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {View, TouchableHighlight} from "react-native"
 import Headquarters from "./Headquarters"
+import UnitContainer from "./UnitContainer"
 import EndStateScene from "./EndStateScene"
 import styles from "../styles"
 
@@ -25,6 +26,9 @@ export default class MainLevel extends Component {
         onClose={() => this.toggleEndStateScene()}
       />
       <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
+      <View>
+          <UnitContainer />
+      </View>
       <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
     </View>
   }
