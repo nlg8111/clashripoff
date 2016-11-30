@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import {TouchableHighlight, Text, View} from "react-native"
 import Unit from "./Unit"
 import {generateUUID} from "../utils"
+import styles from "../styles"
 
 export default class UnitContainer extends Component {
 
@@ -20,11 +21,10 @@ export default class UnitContainer extends Component {
   }
 
   render() {
-    let numberOfUnits = this.state.units.length
     return (
-      <TouchableHighlight onPress={this.addUnit.bind(this)}>
-        <View>
-          <Text># of units: {numberOfUnits}</Text>
+      <TouchableHighlight style={styles.block} onPress={this.addUnit.bind(this)}>
+        <View style={{alignItems: "center"}}>
+          <Text style={styles.button}>Spawnaa</Text>
           {this.state.units}
         </View>
       </TouchableHighlight>

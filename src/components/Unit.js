@@ -1,5 +1,6 @@
 import React, {Component} from "react"
-import {Text, StyleSheet} from "react-native"
+import {View} from "react-native"
+import styles from "../styles"
 
 export default class Unit extends Component {
 
@@ -16,12 +17,6 @@ export default class Unit extends Component {
       bottom: location
     }
 
-    return <Text style={[locationStyle, styles.unit]}>Unit</Text>
+    return <View style={[locationStyle, styles.unit]} />
   }
 }
-
-const styles = StyleSheet.create({
-  unit: {
-    color: "white"
-  },
-})
