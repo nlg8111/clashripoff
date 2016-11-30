@@ -1,7 +1,8 @@
 import React, {Component} from "react"
-import {View, StyleSheet, TouchableHighlight} from "react-native"
+import {View, TouchableHighlight} from "react-native"
 import Headquarters from "./Headquarters"
 import EndStateScene from "./EndStateScene"
+import styles from "../styles"
 
 export default class MainLevel extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class MainLevel extends Component {
   }
 
   render() {
-    return <View style={styles.level}>
+    return <View style={[styles.centerContent, styles.background]}>
       <EndStateScene
         show={this.state.showEndStateScene}
         onClose={() => this.toggleEndStateScene()}
@@ -33,7 +34,7 @@ function TouchableHeadquarters(props) {
 
   return (
     <TouchableHighlight
-      style={styles.levelSide}
+      style={styles.centerContent}
       onPress={props.onPress}
     >
       <View>
@@ -46,18 +47,3 @@ function TouchableHeadquarters(props) {
 TouchableHeadquarters.propTypes = {
   onPress: React.PropTypes.func
 }
-
-const styles = StyleSheet.create({
-  level: {
-    backgroundColor: "black",
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  levelSide: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-})

@@ -3,9 +3,9 @@ import {
   Modal,
   TouchableHighlight,
   View,
-  Text,
-  StyleSheet
+  Text
 } from "react-native"
+import styles from "../styles"
 
 export default class EndStateScene extends React.Component {
   render() {
@@ -13,13 +13,13 @@ export default class EndStateScene extends React.Component {
 
     return (
       <Modal
-        animationType={"slide"}
+        animationType={"fade"}
         transparent={false}
         visible={this.props.show}
         onRequestClose={() => {}}
       >
-        <View style={styles.container}>
-          <Text style={styles.message}>{ message }</Text>
+        <View style={[styles.centerContent, styles.background]}>
+          <Text style={styles.text}>{ message }</Text>
 
           <TouchableHighlight onPress={() => {
             this.props.onClose()
@@ -31,27 +31,6 @@ export default class EndStateScene extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000000",
-  },
-  message: {
-    color: "#FFFFFF"
-  },
-  button: {
-    padding: 10,
-    marginTop: 20,
-    fontSize: 20,
-    borderWidth: 0.5,
-    borderColor: "#FFFFFF",
-    color: "#FFFFFF"
-  }
-})
 
 EndStateScene.propTypes = {
   show: React.PropTypes.bool,
