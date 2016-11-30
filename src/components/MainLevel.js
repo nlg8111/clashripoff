@@ -1,31 +1,49 @@
 import React, {Component} from "react"
-import {View, StyleSheet} from "react-native"
+import {View, TouchableHighlight} from "react-native"
 import Headquarters from "./Headquarters"
+import EndStateScene from "./EndStateScene"
+import styles from "../styles"
 
 export default class MainLevel extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showEndStateScene: false
+    }
+  }
+
+  toggleEndStateScene() {
+    this.setState({
+      showEndStateScene: !this.state.showEndStateScene
+    })
+  }
+
   render() {
-    return <View style={styles.level}>
-      <View style={styles.levelSide}>
-        <Headquarters />
-      </View>
-      <View style={styles.levelSide}>
-        <Headquarters />
-      </View>
+    return <View style={[styles.centerContent, styles.background]}>
+      <EndStateScene
+        show={this.state.showEndStateScene}
+        onClose={() => this.toggleEndStateScene()}
+      />
+      <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
+      <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
     </View>
   }
 }
 
-const styles = StyleSheet.create({
-  level: {
-    backgroundColor: "black",
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  levelSide: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-})
+function TouchableHeadquarters(props) {
+
+  return (
+    <TouchableHighlight
+      style={styles.centerContent}
+      onPress={props.onPress}
+    >
+      <View>
+        <Headquarters />
+      </View>
+    </TouchableHighlight>
+  )
+}
+
+TouchableHeadquarters.propTypes = {
+  onPress: React.PropTypes.func
+}
