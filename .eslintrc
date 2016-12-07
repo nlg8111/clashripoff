@@ -32,7 +32,10 @@
     ]
   },
   "globals": {
-    "it": true
+    "it": true,
+    "setInterval": true,
+    "clearInterval": true,
+    "console": true
   },
   "plugins": [
     "react"

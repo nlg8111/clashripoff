@@ -9,6 +9,10 @@ export default class Unit extends Component {
   }
 
   render() {
-    return <View style={styles.unit} />
+    return <View style={[styles.unit, {bottom: this.props.progress}]} />
   }
+}
+
+Unit.propTypes = {
+  progress: React.PropTypes.number
 }

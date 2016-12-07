@@ -4,13 +4,18 @@ import Headquarters from "./Headquarters"
 import UnitContainer from "./UnitContainer"
 import EndStateScene from "./EndStateScene"
 import styles from "../styles"
+import engine from "../gameLogic/Engine"
 
-export default class MainLevel extends Component {
+export default class Game extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       showEndStateScene: false
     }
+
+    engine.start()
+
   }
 
   toggleEndStateScene() {

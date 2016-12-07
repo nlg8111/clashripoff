@@ -1,10 +1,10 @@
 import React, {Component} from "react"
 import {AppRegistry} from "react-native"
-import MainLevel from "./src/components/MainLevel"
+import Game from "./src/components/Game"
 
 export default class clashripoff extends Component {
   render() {
-    return <MainLevel/>
+    return <Game/>
   }
 }
 

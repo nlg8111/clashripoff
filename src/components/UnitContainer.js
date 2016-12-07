@@ -3,21 +3,28 @@ import {TouchableHighlight, Text, View} from "react-native"
 import Unit from "./Unit"
 import {generateUUID} from "../utils"
 import styles from "../styles"
+import engine from "../gameLogic/Engine"
 
 export default class UnitContainer extends Component {
 
   constructor() {
     super()
 
+    engine.attachView(this)
+
     this.state = {
       units: []
     }
   }
 
-  addUnit() {
+  update() {
     this.setState({
-      units: this.state.units.concat(<Unit key={generateUUID()} />)
+      units: engine.boardState.getUnits().map(unit => <Unit progress={unit.progress} key={generateUUID()} />)
     })
+  }
+
+  addUnit() {
+    engine.boardState.addUnit()
   }
 
   render() {
