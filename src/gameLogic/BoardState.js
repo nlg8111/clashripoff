@@ -10,6 +10,10 @@ export default class BoardState {
     this.units.push(new Unit())
   }
 
+  getUnits() {
+    return this.units
+  }
+
   advanceUnits() {
     this.units.forEach(unit => unit.advance())
   }

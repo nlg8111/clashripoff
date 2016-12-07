@@ -1,7 +1,7 @@
 import BoardState from "./BoardState"
 import Ticker from "./Ticker"
 
-export default class Engine {
+class Engine {
 
   constructor() {
     this.boardState = new BoardState()
@@ -17,3 +17,5 @@ export default class Engine {
   }
 
 }
+
+export default new Engine()
