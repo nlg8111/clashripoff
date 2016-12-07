@@ -5,7 +5,7 @@ export default class Ticker {
   }
 
   start() {
-    this.handle = setInterval(this.callback, 1000)
+    this.handle = setInterval(this.callback, 1000 / 60)
   }
 
   stop() {

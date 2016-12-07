@@ -5,7 +5,7 @@ export default class Unit {
   }
 
   advance() {
-    this.progress += 0.1
+    this.progress += 1.0
   }
 
 }

@@ -10,11 +10,12 @@ export default class Game extends Component {
   constructor(props) {
     super(props)
 
-    engine.start()
-
     this.state = {
       showEndStateScene: false
     }
+
+    engine.start()
+
   }
 
   toggleEndStateScene() {

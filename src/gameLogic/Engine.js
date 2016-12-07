@@ -6,6 +6,7 @@ class Engine {
   constructor() {
     this.boardState = new BoardState()
     this.ticker = new Ticker(this.tick.bind(this))
+    this.views = []
   }
 
   start() {
@@ -14,6 +15,11 @@ class Engine {
 
   tick() {
     this.boardState.advanceUnits()
+    this.views.forEach(v => v.update())
+  }
+
+  attachView(view) {
+    this.views.push(view)
   }
 
 }

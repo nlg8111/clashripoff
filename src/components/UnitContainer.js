@@ -10,16 +10,21 @@ export default class UnitContainer extends Component {
   constructor() {
     super()
 
+    engine.attachView(this)
+
     this.state = {
       units: []
     }
   }
 
+  update() {
+    this.setState({
+      units: engine.boardState.getUnits().map(unit => <Unit progress={unit.progress} key={generateUUID()} />)
+    })
+  }
+
   addUnit() {
     engine.boardState.addUnit()
-    this.setState({
-      units: engine.boardState.getUnits().map(() => <Unit key={generateUUID()} />)
-    })
   }
 
   render() {
