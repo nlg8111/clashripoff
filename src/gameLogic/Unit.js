@@ -1,6 +1,7 @@
 export default class Unit {
 
-  constructor(movementPattern) {
+  constructor(player, movementPattern) {
+    this.player = player
     this.movementPattern = movementPattern
   }
 

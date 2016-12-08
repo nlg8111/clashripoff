@@ -29,11 +29,11 @@ class Engine {
   }
 
   spawnFriendlyUnit() {
-    this.boardState.addUnit(new Unit(new MovementPattern(this.human.hqLocation, this.computer.hqLocation)))
+    this.boardState.addUnit(new Unit(this.human, new MovementPattern(this.human.hqLocation, this.computer.hqLocation)))
   }
 
   spawnEnemyUnit() {
-    this.boardState.addUnit(new Unit(new MovementPattern(this.computer.hqLocation, this.human.hqLocation)))
+    this.boardState.addUnit(new Unit(this.computer, new MovementPattern(this.computer.hqLocation, this.human.hqLocation)))
   }
 
   attachView(view) {
