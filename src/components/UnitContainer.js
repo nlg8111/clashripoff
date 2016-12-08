@@ -19,12 +19,12 @@ export default class UnitContainer extends Component {
 
   update() {
     this.setState({
-      units: engine.boardState.getUnits().map(unit => <Unit progress={unit.progress} key={generateUUID()} />)
+      units: engine.boardState.getUnits().map(unit => <Unit progress={unit.movementPattern.currentLocation} key={generateUUID()} />)
     })
   }
 
   addUnit() {
-    engine.boardState.addUnit()
+    engine.spawnFriendlyUnit()
   }
 
   render() {

@@ -1,11 +1,11 @@
 export default class Unit {
 
-  constructor() {
-    this.progress = 0.0
+  constructor(movementPattern) {
+    this.movementPattern = movementPattern
   }
 
   advance() {
-    this.progress += 1.0
+    this.movementPattern.step()
   }
 
 }

@@ -1,4 +1,4 @@
-import Unit from "./Unit"
+
 
 export default class BoardState {
 
@@ -6,8 +6,8 @@ export default class BoardState {
     this.units = []
   }
 
-  addUnit() {
-    this.units.push(new Unit())
+  addUnit(unit) {
+    this.units.push(unit)
   }
 
   getUnits() {
