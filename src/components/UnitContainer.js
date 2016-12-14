@@ -21,7 +21,7 @@ export default class UnitContainer extends Component {
     this.setState({
       units: engine.boardState.getUnits().map(unit =>
         <Unit
-          progress={unit.movementPattern.currentLocation}
+          progress={unit.getLocation()}
           color={unit.player.color}
           key={generateUUID()}
           />

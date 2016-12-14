@@ -13,7 +13,19 @@ export default class BoardState {
   }
 
   advanceUnits() {
-    this.units.forEach(unit => unit.advance())
+    let initialLocations = this.units.map(unit => unit.getLocation())
+
+    this.units.forEach(unit => {
+      unit.advance()
+
+      if (initialLocations.includes(unit.getLocation())) {
+        unit.kill()
+      }
+    })
+  }
+
+  removeDeadUnits() {
+    this.units = this.units.filter(unit => { return unit.isAlive() })
   }
 
 }
