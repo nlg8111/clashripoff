@@ -9,10 +9,10 @@ export default class MovementPattern {
   }
 
   step() {
-    this.currentLocation = this.peek()
+    this.currentLocation = this.determineNextStep()
   }
 
-  peek() {
+  determineNextStep() {
     if (this.currentLocation === this.destination) {
       return this.destination
     }
