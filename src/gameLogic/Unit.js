@@ -4,6 +4,7 @@ export default class Unit {
     this.player = player
     this.movementPattern = movementPattern
     this.alive = true
+    this.hitBox = 0.05
   }
 
   advance() {
@@ -20,6 +21,10 @@ export default class Unit {
 
   isAlive() {
     return this.alive
+  }
+
+  collidesWith(unitB) {
+    return Math.abs(this.getLocation() - unitB.getLocation()) <= this.hitBox
   }
 
 }

@@ -13,7 +13,7 @@ export default class MovementPattern {
   }
 
   step() {
-    this.currentLocation = this.determineNextStep()
+    this.currentLocation = Math.round(this.determineNextStep() * 100) / 100
   }
 
   determineNextStep() {
