@@ -6,34 +6,41 @@ import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
-import gameState from "../gameLogic/GameState"
 
 export default class Game extends Component {
   constructor(props) {
     super(props)
 
-    engine.attachView(this)
+    this.state = {
+      showStartScreen: true,
+      showEndScreen: false
+    }
   }
 
-  update() {
-    this.setState({})
+  startGame() {
+    engine.start.bind(engine)()
+    this.setState({showStartScreen: false, showEndScreen: false})
+  }
+
+  endGame() {
+    this.setState({showStartScreen: false, showEndScreen: true})
   }
 
   render() {
     return <View style={[styles.centerContent, styles.background]}>
 
       <StartStateScene
-        show={engine.currentState === gameState.START_SCREEN}
-        onClose={engine.start.bind(engine)}
+        show={this.state.showStartScreen}
+        onClose={() => this.startGame()}
       />
       <EndStateScene
-        show={engine.currentState === gameState.END_SCREEN}
+        show={this.state.showEndScreen}
       />
-      <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
+    <TouchableHeadquarters onPress={() => this.endGame()} />
       <View>
           <UnitContainer />
       </View>
-      <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
+      <TouchableHeadquarters onPress={() => this.endGame()} />
     </View>
   }
 }
