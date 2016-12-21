@@ -17,18 +17,30 @@ export default class BoardState {
   }
 
   getCollidingUnits() {
-    let collisions = []
+    let collisions = new Set()
 
     this.units.sort(this.sortByLocation)
 
     for (let i = 1; i < this.units.length; i++) {
-      if (this.units[i - 1].collidesWith(this.units[i])) {
-        collisions.push(this.units[i - 1])
-        collisions.push(this.units[i])
+      let unitExamined = this.units[i]
+      for (let u = i-1; u >= 0; u--) {
+        let possibleCollision = this.units[u]
+
+        if (unitExamined.getPlayer() === possibleCollision.getPlayer()) {
+          continue
+        }
+
+        if (unitExamined.collidesWith(possibleCollision)) {
+          collisions.add(unitExamined)
+          collisions.add(possibleCollision)
+        }
+        else {
+          break
+        }
       }
     }
 
-    return [...new Set(collisions)]
+    return collisions
   }
 
   killCollidedUnits() {

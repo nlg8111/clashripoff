@@ -15,6 +15,10 @@ export default class Unit {
     return this.movementPattern.getCurrentLocation()
   }
 
+  getPlayer() {
+    return this.player
+  }
+
   kill() {
     this.alive = false
   }
