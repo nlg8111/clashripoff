@@ -24,6 +24,8 @@ class Engine {
 
   tick() {
     this.boardState.advanceUnits()
+    this.boardState.killCollidedUnits()
+    this.boardState.removeDeadUnits()
     this.computerAi.tick()
     this.views.forEach(v => v.update())
   }

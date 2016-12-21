@@ -8,8 +8,12 @@ export default class MovementPattern {
     this.currentLocation = origin
   }
 
+  getCurrentLocation() {
+    return this.currentLocation
+  }
+
   step() {
-    this.currentLocation = this.determineNextStep()
+    this.currentLocation = Math.round(this.determineNextStep() * 100) / 100
   }
 
   determineNextStep() {

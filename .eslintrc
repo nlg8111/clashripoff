@@ -35,7 +35,10 @@
     "it": true,
     "setInterval": true,
     "clearInterval": true,
-    "console": true
+    "console": true,
+    "describe": true,
+    "expect": true,
+    "Set": true
   },
   "plugins": [
     "react"
