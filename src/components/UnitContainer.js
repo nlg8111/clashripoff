@@ -24,7 +24,7 @@ export default class UnitContainer extends Component {
           progress={unit.getLocation()}
           color={unit.player.color}
           key={generateUUID()}
-          />
+        />
       )
     })
   }
@@ -36,7 +36,7 @@ export default class UnitContainer extends Component {
   render() {
     return (
       <TouchableHighlight style={styles.block} onPress={this.addUnit.bind(this)}>
-        <View style={{alignItems: "center", alignSelf: "stretch"}}>
+        <View style={styles.centerContent}>
           <Text style={styles.button}>Spawnaa</Text>
           {this.state.units}
         </View>

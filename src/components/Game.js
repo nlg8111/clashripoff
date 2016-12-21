@@ -36,11 +36,15 @@ export default class Game extends Component {
       <EndStateScene
         show={this.state.showEndScreen}
       />
-    <TouchableHeadquarters onPress={() => this.endGame()} />
-      <View>
-          <UnitContainer />
+      <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-end"}}/>
+      <View style={{
+        flex: 0.5,
+        borderWidth: 1,
+        borderColor: "#FCFCFC"
+      }}>
+        <UnitContainer />
       </View>
-      <TouchableHeadquarters onPress={() => this.endGame()} />
+      <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-start"}}/>
     </View>
   }
 }
@@ -49,7 +53,10 @@ function TouchableHeadquarters(props) {
 
   return (
     <TouchableHighlight
-      style={styles.centerContent}
+      style={[{
+        flex: 0.25,
+        flexDirection: "row",
+      }, props.styles]}
       onPress={props.onPress}
     >
       <View>
@@ -60,5 +67,6 @@ function TouchableHeadquarters(props) {
 }
 
 TouchableHeadquarters.propTypes = {
-  onPress: React.PropTypes.func
+  onPress: React.PropTypes.func,
+  styles: React.PropTypes.object
 }

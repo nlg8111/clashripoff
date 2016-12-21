@@ -9,7 +9,7 @@ export default class Unit extends Component {
   }
 
   render() {
-    return <View style={[styles.unit, {bottom: this.props.progress * 100}, {borderColor: this.props.color}]} />
+    return <View style={[styles.unit, {transform: [{ translateY: this.props.progress * 100  }]}, {borderColor: this.props.color}]} />
   }
 }
 
