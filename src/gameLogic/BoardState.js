@@ -16,15 +16,29 @@ export default class BoardState {
     this.units.forEach((u) => u.advance())
   }
 
-  getCollidingUnits() {
+  killCollidedUnits() {
+    this._getCollidingUnits().forEach((u) => u.kill())
+  }
+
+  sortByLocation(a, b) {
+    return a.getLocation() > b.getLocation()
+  }
+
+  removeDeadUnits() {
+    this.units = this.units.filter(unit => {
+      return unit.isAlive()
+    })
+  }
+
+  _getCollidingUnits() {
     let collisions = new Set()
 
-    this.units.sort(this.sortByLocation)
+    let unitsSortedByProgress = this.units.slice(0).sort(this.sortByLocation)
 
-    for (let i = 1; i < this.units.length; i++) {
-      let unitExamined = this.units[i]
+    for (let i = 1; i < unitsSortedByProgress.length; i++) {
+      let unitExamined = unitsSortedByProgress[i]
       for (let u = i-1; u >= 0; u--) {
-        let possibleCollision = this.units[u]
+        let possibleCollision = unitsSortedByProgress[u]
 
         if (unitExamined.getPlayer() === possibleCollision.getPlayer()) {
           continue
@@ -41,20 +55,6 @@ export default class BoardState {
     }
 
     return collisions
-  }
-
-  killCollidedUnits() {
-    this.getCollidingUnits().forEach((u) => u.kill())
-  }
-
-  sortByLocation(a, b) {
-    return a.getLocation() > b.getLocation()
-  }
-
-  removeDeadUnits() {
-    this.units = this.units.filter(unit => {
-      return unit.isAlive()
-    })
   }
 
 }
