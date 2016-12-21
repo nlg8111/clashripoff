@@ -33,6 +33,7 @@
   },
   "globals": {
     "it": true,
+    "require": true,
     "setInterval": true,
     "clearInterval": true,
     "console": true,

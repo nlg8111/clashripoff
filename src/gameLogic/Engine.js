@@ -4,10 +4,13 @@ import Player from "./Player"
 import Unit from "./Unit"
 import MovementPattern from "./MovementPattern"
 import ArtificialIntelligence from "./ArtificialIntelligence"
+import gameState from "./GameState"
 
 class Engine {
 
   constructor() {
+    this.currentState = gameState.START_SCREEN
+
     this.ticker = new Ticker(this.tick.bind(this))
 
     this.human = new Player("rgb(0, 255, 0)", 0.0)
@@ -19,6 +22,7 @@ class Engine {
   }
 
   start() {
+    this.currentState = gameState.IN_PROGRESS
     this.ticker.start()
   }
 

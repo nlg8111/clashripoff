@@ -2,33 +2,32 @@ import React, {Component} from "react"
 import {View, TouchableHighlight} from "react-native"
 import Headquarters from "./Headquarters"
 import UnitContainer from "./UnitContainer"
+import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
+import gameState from "../gameLogic/GameState"
 
 export default class Game extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      showEndStateScene: false
-    }
-
-    engine.start()
-
+    engine.attachView(this)
   }
 
-  toggleEndStateScene() {
-    this.setState({
-      showEndStateScene: !this.state.showEndStateScene
-    })
+  update() {
+    this.setState({})
   }
 
   render() {
     return <View style={[styles.centerContent, styles.background]}>
+
+      <StartStateScene
+        show={engine.currentState === gameState.START_SCREEN}
+        onClose={engine.start.bind(engine)}
+      />
       <EndStateScene
-        show={this.state.showEndStateScene}
-        onClose={() => this.toggleEndStateScene()}
+        show={engine.currentState === gameState.END_SCREEN}
       />
       <TouchableHeadquarters onPress={() => this.toggleEndStateScene()} />
       <View>
