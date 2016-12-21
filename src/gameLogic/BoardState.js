@@ -31,14 +31,14 @@ export default class BoardState {
   }
 
   _getCollidingUnits() {
-    let collisions = new Set()
+    const collisions = new Set()
 
-    let unitsSortedByProgress = this.units.slice(0).sort(this.sortByLocation)
+    const unitsSortedByProgress = this.units.slice(0).sort(this.sortByLocation)
 
     for (let i = 1; i < unitsSortedByProgress.length; i++) {
-      let unitExamined = unitsSortedByProgress[i]
+      const unitExamined = unitsSortedByProgress[i]
       for (let u = i-1; u >= 0; u--) {
-        let possibleCollision = unitsSortedByProgress[u]
+        const possibleCollision = unitsSortedByProgress[u]
 
         if (unitExamined.getPlayer() === possibleCollision.getPlayer()) {
           continue
