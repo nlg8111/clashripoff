@@ -4,6 +4,7 @@ import Player from "./Player"
 import Unit from "./Unit"
 import MovementPattern from "./MovementPattern"
 import ArtificialIntelligence from "./ArtificialIntelligence"
+import GameStates from "./GameStates"
 
 class Engine {
 
@@ -13,6 +14,8 @@ class Engine {
   }
 
   initialize() {
+    this.state = GameStates.UNSTARTED
+
     this.ticker = new Ticker(this.tick.bind(this))
 
     this.human = new Player("rgb(0, 255, 0)", 0.0)
@@ -24,10 +27,7 @@ class Engine {
 
   start() {
     this.ticker.start()
-  }
-
-  stop() {
-    this.ticker.stop()
+    this.state = GameStates.IN_PROGRESS
   }
 
   reset() {
@@ -38,8 +38,22 @@ class Engine {
     this.boardState.advanceUnits()
     this.boardState.killCollidedUnits()
     this.boardState.removeDeadUnits()
+    this.checkForGameOverConditions()
     this.computerAi.tick()
     this.views.forEach(v => v.update())
+  }
+
+  checkForGameOverConditions() {
+    let unitsReachedOpposingCastle = this.boardState.getUnits().filter(u => u.hasReachedDestination())
+    if (unitsReachedOpposingCastle.length >= 1) {
+      if (unitsReachedOpposingCastle[0].player === this.human) {
+        this.state = GameStates.WON
+      }
+      else {
+        this.state = GameStates.LOST
+      }
+      this.ticker.stop()
+    }
   }
 
   spawnFriendlyUnit() {

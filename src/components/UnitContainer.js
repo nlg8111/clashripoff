@@ -28,21 +28,10 @@ export default class UnitContainer extends Component {
         />
       )
     })
-
-    if(this.hasUnitReachedCastle()) {
-      this.props.onUnitReachCastle()
-    }
   }
 
   storeHeight(event) {
     this.height = event.nativeEvent.layout.height
-  }
-
-  hasUnitReachedCastle() {
-    return engine.boardState
-        .getUnits()
-        .filter(u => u.hasReachedDestination())
-        .length >= 1
   }
 
   addUnit() {
@@ -59,8 +48,4 @@ export default class UnitContainer extends Component {
       </TouchableHighlight>
     )
   }
-}
-
-UnitContainer.propTypes = {
-  onUnitReachCastle: React.PropTypes.func
 }

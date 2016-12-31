@@ -6,25 +6,21 @@ import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
+import GameStates from "../gameLogic/GameStates"
 
 export default class Game extends Component {
   constructor(props) {
     super(props)
 
+    engine.attachView(this)
+
     this.state = {
-      showStartScreen: true,
-      showEndScreen: false
+      showScreen: GameStates.UNSTARTED
     }
   }
 
   startGame() {
     engine.start.bind(engine)()
-    this.setState({showStartScreen: false, showEndScreen: false})
-  }
-
-  endGame() {
-    engine.stop.bind(engine)()
-    this.setState({showStartScreen: false, showEndScreen: true})
   }
 
   restartGame() {
@@ -32,26 +28,36 @@ export default class Game extends Component {
     this.startGame()
   }
 
+  update() {
+    if (engine.state !== this.state.showScreen) {
+      this.setState({
+        showScreen: engine.state
+      })
+    }
+  }
+
+
+
   render() {
     return <View style={[styles.centerContent, styles.background]}>
 
       <StartStateScene
-        show={this.state.showStartScreen}
+        show={this.state.showScreen === GameStates.UNSTARTED}
         onClose={() => this.startGame()}
       />
       <EndStateScene
-        show={this.state.showEndScreen}
+        show={this.state.showScreen === GameStates.WON || this.state.showScreen === GameStates.LOST}
         onClose={() => this.restartGame()}
       />
-      <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-end"}}/>
+      <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
       <View style={{
         flex: 0.5,
         borderWidth: 1,
         borderColor: "#FCFCFC"
       }}>
-        <UnitContainer onUnitReachCastle={() => this.endGame()}/>
+        <UnitContainer />
       </View>
-      <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-start"}}/>
+      <TouchableHeadquarters styles={{alignItems: "flex-start"}}/>
     </View>
   }
 }
