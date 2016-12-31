@@ -1,9 +1,8 @@
 import React, {Component} from "react"
-import {View, TouchableHighlight} from "react-native"
-import Headquarters from "./Headquarters"
-import UnitContainer from "./UnitContainer"
+import {View} from "react-native"
 import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
+import GameScene from "./GameScene"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
 import GameStates from "../gameLogic/GameStates"
@@ -62,45 +61,4 @@ export default class Game extends Component {
       <GameScene show={this.shouldShowGameScene()} />
     </View>
   }
-}
-
-function GameScene(props) {
-  return (
-    <View style={{opacity: Number(props.show)}}>
-      <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
-      <View style={{
-        flex: 0.5,
-        alignSelf: "stretch"
-      }}>
-        <UnitContainer />
-      </View>
-      <TouchableHeadquarters styles={{alignItems: "flex-start"}}/>
-    </View>
-  )
-}
-
-GameScene.propTypes = {
-  show: React.PropTypes.bool
-}
-
-function TouchableHeadquarters(props) {
-
-  return (
-    <TouchableHighlight
-      style={[{
-        flex: 0.25,
-        flexDirection: "row",
-      }, props.styles]}
-      onPress={props.onPress}
-    >
-      <View>
-        <Headquarters />
-      </View>
-    </TouchableHighlight>
-  )
-}
-
-TouchableHeadquarters.propTypes = {
-  onPress: React.PropTypes.func,
-  styles: React.PropTypes.object
 }
