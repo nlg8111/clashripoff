@@ -43,15 +43,14 @@ export default class Game extends Component {
         show={this.state.showEndScreen}
         onClose={() => this.restartGame()}
       />
-      <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-end"}}/>
+      <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
       <View style={{
         flex: 0.5,
-        borderWidth: 1,
-        borderColor: "#FCFCFC"
+        alignSelf: "stretch"
       }}>
         <UnitContainer onUnitReachCastle={() => this.endGame()}/>
       </View>
-      <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-start"}}/>
+      <TouchableHeadquarters styles={{alignItems: "flex-start"}}/>
     </View>
   }
 }
