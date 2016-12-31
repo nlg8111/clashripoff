@@ -24,7 +24,7 @@
       "never"
     ],
     "eqeqeq": "error",
-    "dot-location": "error",
+    "dot-location": ["error", "property"],
     "dot-notation": "error",
     "indent": [
       "error",
