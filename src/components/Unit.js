@@ -9,11 +9,13 @@ export default class Unit extends Component {
   }
 
   render() {
-    return <View style={[styles.unit, {transform: [{ translateY: this.props.progress * 100  }]}, {borderColor: this.props.color}]} />
+    return <View
+      style={[styles.unit, {bottom: this.props.position, position: "absolute" }, {borderColor: this.props.color}]}
+      />
   }
 }
 
 Unit.propTypes = {
-  progress: React.PropTypes.number,
+  position: React.PropTypes.number,
   color: React.PropTypes.string
 }

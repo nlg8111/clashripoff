@@ -9,6 +9,7 @@ export default class UnitContainer extends Component {
 
   constructor() {
     super()
+    this.height = 0
 
     engine.attachView(this)
 
@@ -21,7 +22,7 @@ export default class UnitContainer extends Component {
     this.setState({
       units: engine.boardState.getUnits().map(unit =>
         <Unit
-          progress={unit.getLocation()}
+          position={unit.getLocation() * this.height}
           color={unit.player.color}
           key={generateUUID()}
         />
@@ -31,6 +32,10 @@ export default class UnitContainer extends Component {
     if(this.hasUnitReachedCastle()) {
       this.props.onUnitReachCastle()
     }
+  }
+
+  storeHeight(event) {
+    this.height = event.nativeEvent.layout.height
   }
 
   hasUnitReachedCastle() {
@@ -46,9 +51,9 @@ export default class UnitContainer extends Component {
 
   render() {
     return (
-      <TouchableHighlight style={styles.block} onPress={this.addUnit.bind(this)}>
+      <TouchableHighlight style={styles.block} onPress={this.addUnit.bind(this)} onLayout={this.storeHeight.bind(this)}>
         <View style={styles.centerContent}>
-          <Text style={styles.button}>Spawnaa</Text>
+          <Text style={styles.button}>Spawn unit</Text>
           {this.state.units}
         </View>
       </TouchableHighlight>
