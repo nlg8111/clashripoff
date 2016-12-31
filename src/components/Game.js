@@ -52,8 +52,7 @@ export default class Game extends Component {
       <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
       <View style={{
         flex: 0.5,
-        borderWidth: 1,
-        borderColor: "#FCFCFC"
+        alignSelf: "stretch"
       }}>
         <UnitContainer />
       </View>

@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {TouchableHighlight, Text, View} from "react-native"
+import {TouchableHighlight, View} from "react-native"
 import Unit from "./Unit"
 import {generateUUID} from "../utils"
 import styles from "../styles"
@@ -40,9 +40,8 @@ export default class UnitContainer extends Component {
 
   render() {
     return (
-      <TouchableHighlight style={styles.block} onPress={this.addUnit.bind(this)} onLayout={this.storeHeight.bind(this)}>
-        <View style={styles.centerContent}>
-          <Text style={styles.button}>Spawn unit</Text>
+      <TouchableHighlight style={[styles.centerContent]} onPress={this.addUnit.bind(this)} onLayout={this.storeHeight.bind(this)}>
+        <View style={[styles.centerContent, {left: -8}]}>
           {this.state.units}
         </View>
       </TouchableHighlight>
