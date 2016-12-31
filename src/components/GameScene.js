@@ -1,4 +1,5 @@
-import React, {View, TouchableHighlight} from "react"
+import React from "react"
+import {View, TouchableHighlight} from "react-native"
 import UnitContainer from "./UnitContainer"
 import Headquarters from "./Headquarters"
 
