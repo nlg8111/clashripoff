@@ -28,10 +28,16 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   unit: {
+    position: "absolute",
     borderWidth: 1,
     borderRadius: 100,
     borderColor: "#ffffff",
     width: 15,
     height: 15
+  },
+  debug: {
+    borderWidth: 2,
+    borderRadius: 0,
+    borderColor: "yellow",
   }
 })

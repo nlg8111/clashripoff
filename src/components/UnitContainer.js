@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {TouchableHighlight, Text, View} from "react-native"
+import {TouchableHighlight, View} from "react-native"
 import Unit from "./Unit"
 import {generateUUID} from "../utils"
 import styles from "../styles"
@@ -9,6 +9,7 @@ export default class UnitContainer extends Component {
 
   constructor() {
     super()
+    this.height = 0
 
     engine.attachView(this)
 
@@ -21,12 +22,16 @@ export default class UnitContainer extends Component {
     this.setState({
       units: engine.boardState.getUnits().map(unit =>
         <Unit
-          progress={unit.getLocation()}
+          position={unit.getLocation() * this.height}
           color={unit.player.color}
           key={generateUUID()}
-          />
+        />
       )
     })
+  }
+
+  storeHeight(event) {
+    this.height = event.nativeEvent.layout.height
   }
 
   addUnit() {
@@ -35,13 +40,11 @@ export default class UnitContainer extends Component {
 
   render() {
     return (
-      <TouchableHighlight style={styles.block} onPress={this.addUnit.bind(this)}>
-        <View style={{alignItems: "center", alignSelf: "stretch"}}>
-          <Text style={styles.button}>Spawnaa</Text>
+      <TouchableHighlight style={[styles.centerContent]} onPress={this.addUnit.bind(this)} onLayout={this.storeHeight.bind(this)}>
+        <View style={[styles.centerContent, {width: 16, overflow: "hidden"}]}>
           {this.state.units}
         </View>
       </TouchableHighlight>
     )
   }
-
 }
