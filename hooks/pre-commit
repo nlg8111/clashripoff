@@ -4,5 +4,9 @@ function eslintStagedJavascriptFiles() {
   git diff --name-only --cached | grep js$ | xargs eslint
 }
 
-eslintStagedJavascriptFiles
+function runUnitTests() {
+  npm run test
+}
 
+eslintStagedJavascriptFiles
+runUnitTests
