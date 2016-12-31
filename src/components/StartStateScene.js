@@ -8,6 +8,8 @@ import {
 } from "react-native"
 import styles from "../styles"
 
+const gameLogo = require("../../resources/logo.png")
+
 export default class StartStateScene extends React.Component {
   render() {
 
@@ -20,7 +22,7 @@ export default class StartStateScene extends React.Component {
       >
         <View style={[styles.centerContent, styles.background]}>
           <Image
-            source={require("../../resources/logo.png")}
+            source={gameLogo}
             style={{width: 200, height: 300}}
             />
 
