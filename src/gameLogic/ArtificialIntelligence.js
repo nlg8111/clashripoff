@@ -5,7 +5,7 @@ export default class ArtificialIntelligence {
   }
 
   tick() {
-    if (Math.random() < 0.005) {
+    if (Math.random() < 0.01) {
       this.spawnUnitCallback()
     }
   }

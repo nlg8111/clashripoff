@@ -41,7 +41,7 @@ export default class UnitContainer extends Component {
   render() {
     return (
       <TouchableHighlight style={[styles.centerContent]} onPress={this.addUnit.bind(this)} onLayout={this.storeHeight.bind(this)}>
-        <View style={[styles.centerContent, {width: 16}]}>
+        <View style={[styles.centerContent, {width: 16, overflow: "hidden"}]}>
           {this.state.units}
         </View>
       </TouchableHighlight>
