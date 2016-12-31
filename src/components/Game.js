@@ -6,6 +6,7 @@ import GameScene from "./GameScene"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
 import GameStates from "../gameLogic/GameStates"
+import ClosableModal from "./ClosableModal"
 
 export default class Game extends Component {
   constructor(props) {
@@ -39,8 +40,12 @@ export default class Game extends Component {
     return this.state.engineState === GameStates.UNSTARTED
   }
 
-  shouldShowEndScene() {
-    return this.state.engineState === GameStates.WON || this.state.engineState === GameStates.LOST
+  shouldShowWinScene() {
+    return this.state.engineState === GameStates.WON
+  }
+
+  shouldShowLossScene() {
+    return this.state.engineState === GameStates.LOST
   }
 
   shouldShowGameScene() {
@@ -48,16 +53,34 @@ export default class Game extends Component {
   }
 
   render() {
-    return <View style={[styles.centerContent, styles.background]}>
 
-      <StartStateScene
+    return <View style={[styles.centerContent, styles.background]}>
+      <ClosableModal
         show={this.shouldShowStartScene()}
         onClose={() => this.startGame()}
-      />
-      <EndStateScene
-        show={this.shouldShowEndScene()}
+        buttonText="Start"
+      >
+        <StartStateScene />
+      </ClosableModal>
+
+      <ClosableModal
+        show={this.shouldShowWinScene()}
         onClose={() => this.restartGame()}
-      />
+        buttonText="New match!"
+      >
+        <EndStateScene message="YOU SHOWED THEM, ALLRIGHT!" />
+      </ClosableModal>
+
+      <ClosableModal
+        show={this.shouldShowLossScene()}
+        onClose={() => this.restartGame()}
+        buttonText="Try again"
+      >
+        <EndStateScene message="Oh no, the AI beat you :(" />
+      </ClosableModal>
+
+
+
       <GameScene show={this.shouldShowGameScene()} />
     </View>
   }
