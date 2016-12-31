@@ -42,7 +42,7 @@ export default class Game extends Component {
         borderWidth: 1,
         borderColor: "#FCFCFC"
       }}>
-        <UnitContainer />
+        <UnitContainer onUnitReachCastle={() => this.toggleEndStateScene()}/>
       </View>
       <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-start"}}/>
     </View>

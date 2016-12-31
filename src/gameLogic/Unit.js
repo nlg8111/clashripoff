@@ -31,4 +31,7 @@ export default class Unit {
     return Math.abs(this.getLocation() - unitB.getLocation()) <= this.hitBox
   }
 
+  hasReachedDestination() {
+    return this.movementPattern.currentLocation === this.movementPattern.destination
+  }
 }
