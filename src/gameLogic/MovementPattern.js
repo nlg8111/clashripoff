@@ -12,6 +12,10 @@ export default class MovementPattern {
     return this.currentLocation
   }
 
+  isAtDestination() {
+    return this.getCurrentLocation() === this.getDestination()
+  }
+
   step() {
     this.currentLocation = Math.round(this.determineNextStep() * 100) / 100
   }
@@ -31,4 +35,7 @@ export default class MovementPattern {
     }
   }
 
+  getDestination() {
+    return this.destination
+  }
 }

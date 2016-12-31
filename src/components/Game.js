@@ -23,7 +23,13 @@ export default class Game extends Component {
   }
 
   endGame() {
+    engine.stop.bind(engine)()
     this.setState({showStartScreen: false, showEndScreen: true})
+  }
+
+  restartGame() {
+    engine.reset.bind(engine)()
+    this.startGame()
   }
 
   render() {
@@ -35,6 +41,7 @@ export default class Game extends Component {
       />
       <EndStateScene
         show={this.state.showEndScreen}
+        onClose={() => this.restartGame()}
       />
       <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-end"}}/>
       <View style={{
@@ -42,7 +49,7 @@ export default class Game extends Component {
         borderWidth: 1,
         borderColor: "#FCFCFC"
       }}>
-        <UnitContainer onUnitReachCastle={() => this.toggleEndStateScene()}/>
+        <UnitContainer onUnitReachCastle={() => this.endGame()}/>
       </View>
       <TouchableHeadquarters onPress={() => this.endGame()} styles={{alignItems: "flex-start"}}/>
     </View>

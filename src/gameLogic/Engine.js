@@ -8,6 +8,11 @@ import ArtificialIntelligence from "./ArtificialIntelligence"
 class Engine {
 
   constructor() {
+    this.initialize()
+    this.views = []
+  }
+
+  initialize() {
     this.ticker = new Ticker(this.tick.bind(this))
 
     this.human = new Player("rgb(0, 255, 0)", 0.0)
@@ -15,11 +20,18 @@ class Engine {
     this.computerAi = new ArtificialIntelligence(this.spawnEnemyUnit.bind(this))
 
     this.boardState = new BoardState()
-    this.views = []
   }
 
   start() {
     this.ticker.start()
+  }
+
+  stop() {
+    this.ticker.stop()
+  }
+
+  reset() {
+    this.initialize()
   }
 
   tick() {

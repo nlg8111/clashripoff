@@ -32,6 +32,6 @@ export default class Unit {
   }
 
   hasReachedDestination() {
-    return this.movementPattern.currentLocation === this.movementPattern.destination
+    return this.movementPattern.isAtDestination()
   }
 }
