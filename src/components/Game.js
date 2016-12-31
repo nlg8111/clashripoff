@@ -15,7 +15,7 @@ export default class Game extends Component {
     engine.attachView(this)
 
     this.state = {
-      showScreen: GameStates.UNSTARTED
+      engineState: engine.state
     }
   }
 
@@ -29,26 +29,44 @@ export default class Game extends Component {
   }
 
   update() {
-    if (engine.state !== this.state.showScreen) {
+    if (engine.state !== this.state.engineState) {
       this.setState({
-        showScreen: engine.state
+        engineState: engine.state
       })
     }
   }
 
+  shouldShowStartScene() {
+    return this.state.engineState === GameStates.UNSTARTED
+  }
 
+  shouldShowEndScene() {
+    return this.state.engineState === GameStates.WON || this.state.engineState === GameStates.LOST
+  }
+
+  shouldShowGameScene() {
+    return this.state.engineState === GameStates.IN_PROGRESS
+  }
 
   render() {
     return <View style={[styles.centerContent, styles.background]}>
 
       <StartStateScene
-        show={this.state.showScreen === GameStates.UNSTARTED}
+        show={this.shouldShowStartScene()}
         onClose={() => this.startGame()}
       />
       <EndStateScene
-        show={this.state.showScreen === GameStates.WON || this.state.showScreen === GameStates.LOST}
+        show={this.shouldShowEndScene()}
         onClose={() => this.restartGame()}
       />
+      <GameScene show={this.shouldShowGameScene()} />
+    </View>
+  }
+}
+
+function GameScene(props) {
+  return (
+    <View style={{opacity: Number(props.show)}}>
       <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
       <View style={{
         flex: 0.5,
@@ -58,7 +76,11 @@ export default class Game extends Component {
       </View>
       <TouchableHeadquarters styles={{alignItems: "flex-start"}}/>
     </View>
-  }
+  )
+}
+
+GameScene.propTypes = {
+  show: React.PropTypes.bool
 }
 
 function TouchableHeadquarters(props) {
