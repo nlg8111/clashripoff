@@ -27,7 +27,7 @@ export default class StartStateScene extends React.Component {
           <TouchableHighlight onPress={() => {
             this.props.onClose()
           }}>
-            <Text style={styles.button}>Close</Text>
+            <Text style={styles.button}>Start</Text>
           </TouchableHighlight>
         </View>
       </Modal>
