@@ -7,8 +7,8 @@ export default class CombatDetection {
   }
 
   getCombats() {
-    const unitColor = unit => unit.getPlayer().getColor()
-    const unitsByColor = Object.values(_.groupBy(this.units, unitColor))
+    const getUnitColor = unit => unit.getPlayer().getColor()
+    const unitsByColor = Object.values(_.groupBy(this.units, getUnitColor))
     if (unitsByColor.length < 2) {
       return []
     }
