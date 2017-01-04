@@ -1,3 +1,5 @@
+import CombatDetection from "./CombatDetection"
+
 export default class BoardState {
 
   constructor() {
@@ -16,45 +18,17 @@ export default class BoardState {
     this.units.forEach((u) => u.advance())
   }
 
-  killCollidedUnits() {
-    this._getCollidingUnits().forEach((u) => u.kill())
-  }
-
-  sortByLocation(a, b) {
-    return a.getLocation() > b.getLocation()
+  killCombattingUnits() {
+    const combatDetection = new CombatDetection(this.units)
+    combatDetection.getCombats().forEach(participants => {
+      participants.forEach(unit => unit.kill())
+    })
   }
 
   removeDeadUnits() {
     this.units = this.units.filter(unit => {
       return unit.isAlive()
     })
-  }
-
-  _getCollidingUnits() {
-    const collisions = new Set()
-
-    const unitsSortedByProgress = this.units.slice(0).sort(this.sortByLocation)
-
-    for (let i = 1; i < unitsSortedByProgress.length; i++) {
-      const unitExamined = unitsSortedByProgress[i]
-      for (let u = i-1; u >= 0; u--) {
-        const possibleCollision = unitsSortedByProgress[u]
-
-        if (unitExamined.getPlayer() === possibleCollision.getPlayer()) {
-          continue
-        }
-
-        if (unitExamined.collidesWith(possibleCollision)) {
-          collisions.add(unitExamined)
-          collisions.add(possibleCollision)
-        }
-        else {
-          break
-        }
-      }
-    }
-
-    return collisions
   }
 
 }
