@@ -49,10 +49,10 @@ describe("Combat Detection", () => {
   beforeAll(() => {
     this.playerA = new Player("#000000", 0.0)
     this.playerB = new Player("#FFFFFF", 1.0)
-    this.pattern0 = new MovementPattern(0.00, 0.00)
-    this.pattern1 = new MovementPattern(0.01, 0.01)
-    this.pattern2 = new MovementPattern(0.02, 0.02)
-    this.pattern3 = new MovementPattern(0.03, 0.03)
+    this.position00 = new MovementPattern(0.00, 0.00)
+    this.position01 = new MovementPattern(0.01, 0.01)
+    this.position02 = new MovementPattern(0.02, 0.02)
+    this.position03 = new MovementPattern(0.03, 0.03)
   })
 
   it ("detects no combat if there are no units", () => {
@@ -62,7 +62,7 @@ describe("Combat Detection", () => {
 
   it ("detects no combat if there is only one unit", () => {
     const units = [
-      new Unit(this.playerA, this.pattern0)
+      new Unit(this.playerA, this.position00)
     ]
     const detector = new CombatDetection(units)
     expect (detector.getCombats().length === 0)
@@ -70,8 +70,8 @@ describe("Combat Detection", () => {
 
   it ("detects no combat if there are only one player's units", () => {
     const units = [
-      new Unit(this.playerA, this.pattern0),
-      new Unit(this.playerA, this.pattern1)
+      new Unit(this.playerA, this.position00),
+      new Unit(this.playerA, this.position01)
     ]
     const detector = new CombatDetection(units)
     expect (detector.getCombats().length === 0)
@@ -79,8 +79,8 @@ describe("Combat Detection", () => {
 
   it ("detects no combat if hostile units are far from each other", () => {
     const units = [
-      new Unit(this.playerA, this.pattern0),
-      new Unit(this.playerB, this.pattern3)
+      new Unit(this.playerA, this.position00),
+      new Unit(this.playerB, this.position03)
     ]
     const detector = new CombatDetection(units)
     expect (detector.getCombats().length === 0)
@@ -88,8 +88,8 @@ describe("Combat Detection", () => {
 
   it ("detects combat if two hostile units are adjacent", () => {
     const units = [
-      new Unit(this.playerA, this.pattern1),
-      new Unit(this.playerB, this.pattern2)
+      new Unit(this.playerA, this.position01),
+      new Unit(this.playerB, this.position02)
     ]
     const detector = new CombatDetection(units)
     expect (detector.getCombats().length === 1)
@@ -97,10 +97,10 @@ describe("Combat Detection", () => {
 
   it ("detects multiple combats from multiple adjacent hostile pairs", () => {
     const units = [
-      new Unit(this.playerA, this.pattern0),
-      new Unit(this.playerB, this.pattern1),
-      new Unit(this.playerB, this.pattern2),
-      new Unit(this.playerA, this.pattern3)
+      new Unit(this.playerA, this.position00),
+      new Unit(this.playerB, this.position01),
+      new Unit(this.playerB, this.position02),
+      new Unit(this.playerA, this.position03)
     ]
     const detector = new CombatDetection(units)
     expect (detector.getCombats().length === 2)
