@@ -20,10 +20,6 @@ export default class BoardState {
     this._getCollidingUnits().forEach((u) => u.kill())
   }
 
-  sortByLocation(a, b) {
-    return a.getLocation() > b.getLocation()
-  }
-
   removeDeadUnits() {
     this.units = this.units.filter(unit => {
       return unit.isAlive()
@@ -31,25 +27,25 @@ export default class BoardState {
   }
 
   _getCollidingUnits() {
+    if (this.units.length < 2) {
+      return []
+    }
+
+    const playerA = this.units[0].getPlayer()
+    const playerAUnits = this.units.filter(u => u.getPlayer() === playerA)
+    const playerBUnits = this.units.filter(u => u.getPlayer() !== playerA)
+
+    return this._getOverlappingUnits(playerAUnits, playerBUnits)
+  }
+
+  _getOverlappingUnits(groupA, groupB) {
     const collisions = new Set()
 
-    const unitsSortedByProgress = this.units.slice(0).sort(this.sortByLocation)
-
-    for (let i = 1; i < unitsSortedByProgress.length; i++) {
-      const unitExamined = unitsSortedByProgress[i]
-      for (let u = i-1; u >= 0; u--) {
-        const possibleCollision = unitsSortedByProgress[u]
-
-        if (unitExamined.getPlayer() === possibleCollision.getPlayer()) {
-          continue
-        }
-
-        if (unitExamined.collidesWith(possibleCollision)) {
-          collisions.add(unitExamined)
-          collisions.add(possibleCollision)
-        }
-        else {
-          break
+    for (let aIndex = 0; aIndex < groupA.length; aIndex++) {
+      for (let bIndex = 0; bIndex < groupB.length; bIndex++) {
+        if (groupA[aIndex].collidesWith(groupB[bIndex])) {
+          collisions.add(groupA[aIndex])
+          collisions.add(groupB[bIndex])
         }
       }
     }
