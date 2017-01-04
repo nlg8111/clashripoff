@@ -4,6 +4,16 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "#000000",
   },
+  backgroundImage: {
+    flex: 1,
+    alignSelf: "stretch",
+    width: undefined,
+    height: undefined,
+    backgroundColor:"transparent",
+    justifyContent: "center",
+    alignItems: "center",
+    resizeMode: "cover",
+  },
   centerContent: {
     flex: 1,
     flexDirection: "column",

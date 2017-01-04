@@ -1,12 +1,14 @@
 import React from "react"
-import {View, TouchableHighlight} from "react-native"
+import {Image, View, TouchableHighlight} from "react-native"
 import UnitContainer from "./UnitContainer"
 import Headquarters from "./Headquarters"
+import singleLineMap from "../assets/map_single_line.png"
+import styles from "../styles"
 
 export default class GameScene extends React.Component {
 
   render() {
-    return <View style={{opacity: Number(this.props.show)}}>
+    return <Image source={singleLineMap} style={[styles.backgroundImage, {opacity: Number(this.props.show)}]}>
         <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
         <View style={{
           flex: 0.5,
@@ -15,7 +17,7 @@ export default class GameScene extends React.Component {
           <UnitContainer />
         </View>
         <TouchableHeadquarters styles={{alignItems: "flex-start"}}/>
-      </View>
+      </Image>
   }
 }
 
