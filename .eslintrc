@@ -34,6 +34,8 @@
   "globals": {
     "_": true,
     "it": true,
+    "beforeEach": true,
+    "beforeAll": true,
     "require": true,
     "setInterval": true,
     "clearInterval": true,
