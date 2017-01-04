@@ -8,7 +8,7 @@ import styles from "../styles"
 export default class GameScene extends React.Component {
 
   render() {
-    return <Image source={singleLineMap} style={[styles.backgroundImage, {opacity: Number(this.props.show)}]}>
+    return <Image source={singleLineMap} style={[styles.backgroundImage, {opacity: Number(this.props.show), flexDirection: "row"}]}>
         <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
         <View style={{
           flex: 0.5,

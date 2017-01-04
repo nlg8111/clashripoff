@@ -39,11 +39,9 @@ export default StyleSheet.create({
   },
   unit: {
     position: "absolute",
-    borderWidth: 1,
-    borderRadius: 100,
-    borderColor: "#ffffff",
-    width: 15,
-    height: 15
+    width: 30,
+    height: 30,
+    resizeMode: "contain",
   },
   debug: {
     borderWidth: 2,

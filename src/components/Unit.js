@@ -1,8 +1,9 @@
 import React, {Component} from "react"
-import {View} from "react-native"
+import {Image} from "react-native"
 import styles from "../styles"
+import unit1 from "../assets/player_1_static.png"
 
-let centerY = 0
+let centerX = 0
 
 export default class Unit extends Component {
 
@@ -11,12 +12,13 @@ export default class Unit extends Component {
   }
 
   storeCenter(event) {
-    centerY = event.nativeEvent.layout.height / 2
+    centerX = event.nativeEvent.layout.width / 2
   }
 
   render() {
-    return <View
-      style={[styles.unit, {bottom: this.props.position - centerY, position: "absolute" }, {borderColor: this.props.color}]}
+    return <Image
+      source={unit1}
+      style={[styles.unit, {left: this.props.position - centerX, position: "absolute" }, {borderColor: this.props.color}]}
       onLayout={this.storeCenter.bind(this)}
       />
   }

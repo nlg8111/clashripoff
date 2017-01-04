@@ -1,18 +1,17 @@
 import React, {Component} from "react"
-import {Text, View, StyleSheet} from "react-native"
-import styles from "../styles"
+import {Image, StyleSheet} from "react-native"
+import hq1 from "../assets/player_1_hq.png"
 
 export default class Headquarters extends Component {
   render() {
-    return <View style={[styles.block, hqStyles.hq]}>
-      <Text>HQ</Text>
-    </View>
+    return <Image source={hq1} style={[hqStyles.hq]} />
   }
 }
 
 const hqStyles = StyleSheet.create({
   hq: {
-    width: 100,
-    height: 100
+    width: 83,
+    height: 72,
+    resizeMode: "contain"
   }
 })

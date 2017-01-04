@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {TouchableHighlight, View} from "react-native"
+import {TouchableWithoutFeedback, View} from "react-native"
 import Unit from "./Unit"
 import {generateUUID} from "../utils"
 import styles from "../styles"
@@ -9,7 +9,7 @@ export default class UnitContainer extends Component {
 
   constructor() {
     super()
-    this.height = 0
+    this.width = 0
 
     engine.attachView(this)
 
@@ -22,7 +22,7 @@ export default class UnitContainer extends Component {
     this.setState({
       units: engine.boardState.getUnits().map(unit =>
         <Unit
-          position={unit.getLocation() * this.height}
+          position={unit.getLocation() * this.width}
           color={unit.player.color}
           key={generateUUID()}
         />
@@ -30,8 +30,8 @@ export default class UnitContainer extends Component {
     })
   }
 
-  storeHeight(event) {
-    this.height = event.nativeEvent.layout.height
+  storeWidth(event) {
+    this.width = event.nativeEvent.layout.width
   }
 
   addUnit() {
@@ -40,11 +40,11 @@ export default class UnitContainer extends Component {
 
   render() {
     return (
-      <TouchableHighlight style={[styles.centerContent]} onPress={this.addUnit.bind(this)} onLayout={this.storeHeight.bind(this)}>
-        <View style={[styles.centerContent, {width: 16, overflow: "hidden"}]}>
+      <TouchableWithoutFeedback style={[styles.centerContent]} onPress={this.addUnit.bind(this)} onLayout={this.storeWidth.bind(this)}>
+        <View style={[styles.centerContent, {alignSelf: "stretch", overflow: "hidden"}]}>
           {this.state.units}
         </View>
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
     )
   }
 }

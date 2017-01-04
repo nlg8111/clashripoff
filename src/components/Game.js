@@ -49,11 +49,11 @@ export default class Game extends Component {
   }
 
   shouldShowGameScene() {
+
     return this.state.engineState === GameStates.IN_PROGRESS
   }
 
   render() {
-
     return <View style={[styles.centerContent, styles.background]}>
       <ClosableModal
         show={this.shouldShowStartScene()}
