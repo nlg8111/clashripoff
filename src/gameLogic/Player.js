@@ -5,4 +5,8 @@ export default class Player {
     this.hqLocation = hqLocation
   }
 
+  getColor() {
+    return this.color
+  }
+
 }

@@ -32,6 +32,7 @@
     ]
   },
   "globals": {
+    "_": true,
     "it": true,
     "require": true,
     "setInterval": true,
