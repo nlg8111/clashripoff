@@ -34,7 +34,7 @@ describe("Unit", () => {
     expect(enemy.isAlive()).toEqual(true)
 
     board.advanceUnits()
-    board.killCollidedUnits()
+    board.killCombattingUnits()
 
     expect(player.isAlive()).toEqual(false)
     expect(enemy.isAlive()).toEqual(false)

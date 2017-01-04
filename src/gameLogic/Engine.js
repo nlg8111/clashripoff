@@ -36,7 +36,7 @@ class Engine {
 
   tick() {
     this.boardState.advanceUnits()
-    this.boardState.killCollidedUnits()
+    this.boardState.killCombattingUnits()
     this.boardState.removeDeadUnits()
     this.checkForGameOverConditions()
     this.computerAi.tick()
