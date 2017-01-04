@@ -32,7 +32,6 @@
     ]
   },
   "globals": {
-    "_": true,
     "it": true,
     "beforeEach": true,
     "beforeAll": true,
