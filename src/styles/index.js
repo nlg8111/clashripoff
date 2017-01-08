@@ -4,6 +4,16 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "#000000",
   },
+  backgroundImage: {
+    flex: 1,
+    alignSelf: "stretch",
+    width: undefined,
+    height: undefined,
+    backgroundColor:"transparent",
+    justifyContent: "center",
+    alignItems: "center",
+    resizeMode: "cover",
+  },
   centerContent: {
     flex: 1,
     flexDirection: "column",
@@ -29,15 +39,19 @@ export default StyleSheet.create({
   },
   unit: {
     position: "absolute",
-    borderWidth: 1,
-    borderRadius: 100,
-    borderColor: "#ffffff",
-    width: 15,
-    height: 15
+    width: 30,
+    height: 30,
   },
   debug: {
     borderWidth: 2,
     borderRadius: 0,
     borderColor: "yellow",
+  },
+  fillContainer: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
   }
 })

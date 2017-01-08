@@ -1,3 +1,5 @@
+import {generateUUID} from "../utils"
+
 export default class Unit {
 
   constructor(player, movementPattern) {
@@ -5,6 +7,7 @@ export default class Unit {
     this.movementPattern = movementPattern
     this.alive = true
     this.hitBox = 0.05
+    this.uuid = generateUUID()
   }
 
   advance() {

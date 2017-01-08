@@ -18,8 +18,8 @@ class Engine {
 
     this.ticker = new Ticker(this.tick.bind(this))
 
-    this.human = new Player("rgb(0, 255, 0)", 0.0)
-    this.computer = new Player("rgb(255, 0, 0)", 1.0)
+    this.human = new Player("rgba(0, 255, 0, 0.15)", 0.0)
+    this.computer = new Player("rgba(255, 0, 0, 0.15)", 1.0)
     this.computerAi = new ArtificialIntelligence(this.spawnEnemyUnit.bind(this))
 
     this.boardState = new BoardState()

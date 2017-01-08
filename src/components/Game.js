@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {View} from "react-native"
 import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
-import GameScene from "./GameScene"
+import Map from "./Map"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
 import GameStates from "../gameLogic/GameStates"
@@ -49,11 +49,11 @@ export default class Game extends Component {
   }
 
   shouldShowGameScene() {
+
     return this.state.engineState === GameStates.IN_PROGRESS
   }
 
   render() {
-
     return <View style={[styles.centerContent, styles.background]}>
       <ClosableModal
         show={this.shouldShowStartScene()}
@@ -79,9 +79,7 @@ export default class Game extends Component {
         <EndStateScene message="Oh no, the AI beat you :(" />
       </ClosableModal>
 
-
-
-      <GameScene show={this.shouldShowGameScene()} />
+      <Map show={this.shouldShowGameScene()} />
     </View>
   }
 }

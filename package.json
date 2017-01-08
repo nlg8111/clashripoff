@@ -11,6 +11,7 @@
     "lodash": "^4.17.4",
     "react": "^15.4.1",
     "react-native": "^0.39.0",
+    "react-style-proptype": "^1.4.0",
     "whatwg-fetch": "^1.1.0"
   },
   "jest": {
