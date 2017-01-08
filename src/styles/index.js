@@ -41,11 +41,18 @@ export default StyleSheet.create({
     position: "absolute",
     width: 30,
     height: 30,
-    resizeMode: "contain",
+    zIndex: 999,
   },
   debug: {
     borderWidth: 2,
     borderRadius: 0,
     borderColor: "yellow",
+  },
+  fillContainer: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
   }
 })

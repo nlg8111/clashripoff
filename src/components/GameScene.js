@@ -9,14 +9,9 @@ export default class GameScene extends React.Component {
 
   render() {
     return <Image source={singleLineMap} style={[styles.backgroundImage, {opacity: Number(this.props.show), flexDirection: "row"}]}>
-        <TouchableHeadquarters styles={{alignItems: "flex-end"}}/>
-        <View style={{
-          flex: 0.5,
-          alignSelf: "stretch"
-        }}>
-          <UnitContainer />
-        </View>
-        <TouchableHeadquarters styles={{alignItems: "flex-start"}}/>
+        <TouchableHeadquarters style={{justifyContent: "flex-start"}}/>
+        <TouchableHeadquarters style={{justifyContent: "flex-end"}}/>
+        <UnitContainer />
       </Image>
   }
 }
@@ -30,9 +25,9 @@ function TouchableHeadquarters(props) {
   return (
     <TouchableHighlight
       style={[{
-        flex: 0.25,
+        flex: 1,
         flexDirection: "row",
-      }, props.styles]}
+      }, props.style]}
       onPress={props.onPress}
     >
       <View>
@@ -44,5 +39,5 @@ function TouchableHeadquarters(props) {
 
 TouchableHeadquarters.propTypes = {
   onPress: React.PropTypes.func,
-  styles: React.PropTypes.object
+  style: React.PropTypes.object
 }

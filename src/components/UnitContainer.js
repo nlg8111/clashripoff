@@ -40,8 +40,13 @@ export default class UnitContainer extends Component {
 
   render() {
     return (
-      <TouchableWithoutFeedback style={[styles.centerContent]} onPress={this.addUnit.bind(this)} onLayout={this.storeWidth.bind(this)}>
-        <View style={[styles.centerContent, {alignSelf: "stretch", overflow: "hidden"}]}>
+      <TouchableWithoutFeedback style={[styles.fillContainer]} onPress={this.addUnit.bind(this)} onLayout={this.storeWidth.bind(this)}>
+        <View style={[styles.centerContent, styles.fillContainer, {
+          alignSelf: "stretch",
+          overflow: "hidden",
+          left: 42,
+          right: 42
+        }]}>
           {this.state.units}
         </View>
       </TouchableWithoutFeedback>
