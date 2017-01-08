@@ -41,7 +41,6 @@ export default StyleSheet.create({
     position: "absolute",
     width: 30,
     height: 30,
-    zIndex: 999,
   },
   debug: {
     borderWidth: 2,

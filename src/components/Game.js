@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {View} from "react-native"
 import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
-import GameScene from "./GameScene"
+import MapRoadSingleLane from "./MapRoadSingleLane"
 import styles from "../styles"
 import engine from "../gameLogic/Engine"
 import GameStates from "../gameLogic/GameStates"
@@ -79,9 +79,7 @@ export default class Game extends Component {
         <EndStateScene message="Oh no, the AI beat you :(" />
       </ClosableModal>
 
-
-
-      <GameScene show={this.shouldShowGameScene()} />
+      <MapRoadSingleLane show={this.shouldShowGameScene()} />
     </View>
   }
 }
