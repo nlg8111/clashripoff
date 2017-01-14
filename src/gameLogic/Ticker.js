@@ -1,15 +1,21 @@
 export default class Ticker {
+  constructor(fn) {
+    this.started = false
+    this.callback = fn
+  }
 
-  constructor(callback) {
-    this.callback = callback
+  loop() {
+    this.callback()
+    if(this.started) requestAnimationFrame(this.loop.bind(this))
   }
 
   start() {
-    this.handle = setInterval(this.callback, 1000 / 60)
+    this.started = true
+
+    requestAnimationFrame(this.loop.bind(this))
   }
 
   stop() {
-    clearInterval(this.handle)
+    this.started = false
   }
-
 }
