@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {View} from "react-native"
+import { AppState, View} from "react-native"
 import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
 import Map from "./Map"
@@ -7,6 +7,7 @@ import styles from "../styles"
 import engine from "../gameLogic/Engine"
 import GameStates from "../gameLogic/GameStates"
 import ClosableModal from "./ClosableModal"
+import backgroundMusic from "./BackgroundMusic"
 
 export default class Game extends Component {
   constructor(props) {
@@ -15,8 +16,29 @@ export default class Game extends Component {
     engine.attachView(this)
 
     this.state = {
-      engineState: engine.state
+      engineState: engine.state,
+      appState: AppState.currentState
     }
+
+  }
+
+  componentDidMount() {
+    backgroundMusic.play()
+    AppState.addEventListener("change", this._handleAppStateChange.bind(this))
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener("change", this._handleAppStateChange.bind(this))
+  }
+
+  _handleAppStateChange(nextAppState) {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === "active") {
+      backgroundMusic.play()
+    }
+    else {
+      backgroundMusic.pause()
+    }
+    this.setState({appState: nextAppState})
   }
 
   startGame() {
@@ -49,7 +71,6 @@ export default class Game extends Component {
   }
 
   shouldShowGameScene() {
-
     return this.state.engineState === GameStates.IN_PROGRESS
   }
 
