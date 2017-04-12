@@ -32,6 +32,8 @@
     ]
   },
   "globals": {
+    "module": true,
+    "jest": true,
     "it": true,
     "beforeEach": true,
     "beforeAll": true,
