@@ -43,7 +43,8 @@
     "console": true,
     "describe": true,
     "expect": true,
-    "Set": true
+    "Set": true,
+    "requestAnimationFrame": true
   },
   "plugins": [
     "react"
