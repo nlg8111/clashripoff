@@ -29,9 +29,11 @@
     "indent": [
       "error",
       2
-    ]
+    ],
+    "no-console": "warn"
   },
   "globals": {
+    "WebSocket": true,
     "module": true,
     "jest": true,
     "it": true,
