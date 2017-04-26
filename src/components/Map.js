@@ -5,7 +5,6 @@ import Headquarters from "./Headquarters"
 import singleLineMap from "../assets/map_single_line.png"
 import styles from "../styles"
 import Touchable from "./Touchable"
-import engine from "../gameLogic/Engine"
 import GameServer from "../services/GameServer"
 
 export default class Map extends React.Component {
