@@ -8,6 +8,7 @@ import engine from "../gameLogic/Engine"
 import GameStates from "../gameLogic/GameStates"
 import ClosableModal from "./ClosableModal"
 import backgroundMusic from "./BackgroundMusic"
+import { ClashRipoffSocket } from "../utils"
 
 export default class Game extends Component {
   constructor(props) {
@@ -25,6 +26,11 @@ export default class Game extends Component {
   componentDidMount() {
     backgroundMusic.play()
     AppState.addEventListener("change", this._handleAppStateChange.bind(this))
+    const ws = ClashRipoffSocket()
+
+    ws.onmessage = (e) => {
+      console.log(e.data)
+    }
   }
 
   componentWillUnmount() {

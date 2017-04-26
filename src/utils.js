@@ -7,3 +7,8 @@ export function generateUUID() {
   })
   return uuid
 }
+
+export function ClashRipoffSocket() {
+  return new WebSocket("ws://clash-ripoff.herokuapp.com/socket")
+}
+
