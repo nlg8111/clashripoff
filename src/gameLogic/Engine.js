@@ -3,7 +3,6 @@ import Ticker from "./Ticker"
 import Player from "./Player"
 import Unit from "./Unit"
 import MovementPattern from "./MovementPattern"
-import ArtificialIntelligence from "./ArtificialIntelligence"
 import GameStates from "./GameStates"
 
 class Engine {
