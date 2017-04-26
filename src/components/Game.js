@@ -110,8 +110,6 @@ export default class Game extends Component {
 
   spectate() {
     console.warn("Starting to spectate...")
-    this.gameServer.subscribe(() => {
-      if(!this.shouldShowGameScene()) this.restartGame()
-    })
+    this.gameServer.subscribe("start", () => this.restartGame())
   }
 }
