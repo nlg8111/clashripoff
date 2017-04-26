@@ -15,7 +15,6 @@ export default class Game extends Component {
     super(props)
 
     engine.attachView(this)
-    this.gameServer = new GameServer("ws://localhost:3000")
     this.state = {
       engineState: engine.state,
       appState: AppState.currentState
@@ -27,7 +26,7 @@ export default class Game extends Component {
     backgroundMusic.play()
     AppState.addEventListener("change", this._handleAppStateChange.bind(this))
 
-    this.gameServer.connect()
+    GameServer.connect("ws://clash-ripoff.herokuapp.com")
   }
 
   componentWillUnmount() {
@@ -81,7 +80,7 @@ export default class Game extends Component {
     return <View style={[styles.centerContent, styles.background]}>
       <ClosableModal
         show={this.shouldShowStartScene()}
-        onClose={() => this.startGame()}
+        onClose={() => GameServer.start()}
         buttonText="Start"
       >
         <StartStateScene />
@@ -90,7 +89,7 @@ export default class Game extends Component {
 
       <ClosableModal
         show={this.shouldShowWinScene()}
-        onClose={() => this.restartGame()}
+        onClose={() => GameServer.start()}
         buttonText="New match!"
       >
         <EndStateScene message="YOU SHOWED THEM, ALLRIGHT!" />
@@ -98,7 +97,7 @@ export default class Game extends Component {
 
       <ClosableModal
         show={this.shouldShowLossScene()}
-        onClose={() => this.restartGame()}
+        onClose={() => GameServer.start()}
         buttonText="Try again"
       >
         <EndStateScene message="Oh no, the AI beat you :(" />
@@ -110,8 +109,8 @@ export default class Game extends Component {
 
   spectate() {
     console.warn("Starting to spectate...")
-    this.gameServer.subscribe("start", () => {
-      this.gameServer.subscribe("spawn", (event) => {
+    GameServer.subscribe("start", () => {
+      GameServer.subscribe("spawn", (event) => {
         if(event.team === "friendly") {
           engine.spawnFriendlyUnit()
         } else if (event.team === "enemy") {

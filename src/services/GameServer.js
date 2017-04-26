@@ -1,14 +1,13 @@
 
 const triggerSubscriptions = (subs, args) => subs && subs.forEach(callback => callback(args))
 
-export default class GameServer {
-  constructor(websocketUrl) {
-    this.url = websocketUrl
+class GameServer {
+  constructor() {
     this.subscriptions = {}
   }
 
-  connect() {
-    this.socket = new WebSocket(this.url)
+  connect(websocketUrl) {
+    this.socket = new WebSocket(websocketUrl)
 
     this.socket.onmessage = (m) => {
       const event = JSON.parse(m.data)
@@ -25,8 +24,25 @@ export default class GameServer {
   }
 
   start() {
-    this.socket.send("start")
+    this.socket.send(JSON.stringify({
+      type: "start"
+    }))
+  }
+
+  spawnFriendlyUnit() {
+    this.socket.send(JSON.stringify({
+      type: "spawn",
+      team: "friendly"
+    }))
+  }
+
+  spawnEnemyUnit() {
+    this.socket.send(JSON.stringify({
+      type: "spawn",
+      team: "enemy"
+    }))
   }
 }
 
+export default new GameServer()
 
