@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { AppState, View} from "react-native"
+import {AppState, Button, View} from "react-native"
 import StartStateScene from "./StartStateScene"
 import EndStateScene from "./EndStateScene"
 import Map from "./Map"
@@ -28,7 +28,6 @@ export default class Game extends Component {
     AppState.addEventListener("change", this._handleAppStateChange.bind(this))
 
     this.gameServer.connect()
-    this.gameServer.subscribe(console.log)
   }
 
   componentWillUnmount() {
@@ -86,6 +85,7 @@ export default class Game extends Component {
         buttonText="Start"
       >
         <StartStateScene />
+        <Button onPress={() => this.spectate() } title="Spectate" />
       </ClosableModal>
 
       <ClosableModal
@@ -106,5 +106,12 @@ export default class Game extends Component {
 
       <Map show={this.shouldShowGameScene()} />
     </View>
+  }
+
+  spectate() {
+    console.warn("Starting to spectate...")
+    this.gameServer.subscribe(() => {
+      if(!this.shouldShowGameScene()) this.restartGame()
+    })
   }
 }

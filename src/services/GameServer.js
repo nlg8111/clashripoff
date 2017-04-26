@@ -11,6 +11,10 @@ export default class GameServer {
   subscribe(callback) {
     this.socket.onmessage = callback
   }
+
+  start() {
+    this.socket.send("start")
+  }
 }
 
 
