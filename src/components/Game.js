@@ -110,6 +110,15 @@ export default class Game extends Component {
 
   spectate() {
     console.warn("Starting to spectate...")
-    this.gameServer.subscribe("start", () => this.restartGame())
+    this.gameServer.subscribe("start", () => {
+      this.gameServer.subscribe("spawn", (event) => {
+        if(event.team === "friendly") {
+          engine.spawnFriendlyUnit()
+        } else if (event.team === "enemy") {
+          engine.spawnEnemyUnit()
+        }
+      })
+      this.restartGame()
+    })
   }
 }

@@ -1,5 +1,5 @@
 
-const triggerSubscriptions = (subs) => subs && subs.forEach(callback => callback())
+const triggerSubscriptions = (subs, args) => subs && subs.forEach(callback => callback(args))
 
 export default class GameServer {
   constructor(websocketUrl) {
@@ -11,8 +11,8 @@ export default class GameServer {
     this.socket = new WebSocket(this.url)
 
     this.socket.onmessage = (m) => {
-      const {type} = JSON.parse(m.data)
-      triggerSubscriptions(this.subscriptions[type])
+      const event = JSON.parse(m.data)
+      triggerSubscriptions(this.subscriptions[event.type], event)
     }
   }
 
