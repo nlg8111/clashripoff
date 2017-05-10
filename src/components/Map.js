@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import {Image, View} from "react-native"
 import Lane from "./Lane"
 import Headquarters from "./Headquarters"
@@ -44,7 +45,7 @@ export default class Map extends React.Component {
 }
 
 Map.propTypes = {
-  show: React.PropTypes.bool
+  show: PropTypes.bool
 }
 
 function TouchableHeadquarters(props) {
@@ -64,6 +65,6 @@ function TouchableHeadquarters(props) {
 }
 
 TouchableHeadquarters.propTypes = {
-  onPress: React.PropTypes.func,
-  style: React.PropTypes.object
+  onPress: PropTypes.func,
+  style: PropTypes.object
 }

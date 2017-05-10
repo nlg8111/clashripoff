@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import {View, Modal} from "react-native"
 import styles from "../styles"
 
@@ -21,9 +22,9 @@ export default class ClosableModal extends React.Component {
 }
 
 ClosableModal.propTypes = {
-  children: React.PropTypes.node.isRequired,
-  show: React.PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  show: PropTypes.bool.isRequired,
 
-  buttonText: React.PropTypes.string,
-  onClose: React.PropTypes.func
+  buttonText: PropTypes.string,
+  onClose: PropTypes.func
 }

@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import {Text, TouchableHighlight} from "react-native"
 import styles from "../styles"
 
@@ -13,6 +14,6 @@ export default class TextButton extends React.Component {
 }
 
 TextButton.propTypes = {
-  onPress: React.PropTypes.func.isRequired,
-  text: React.PropTypes.string.isRequired
+  onPress: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired
 }
