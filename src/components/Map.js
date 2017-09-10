@@ -38,14 +38,15 @@ export default class Map extends React.Component {
       onLayout={this.storeSize.bind(this)}
     >
       <Lane progressToPosition={this.progressToHorizontalLane.bind(this)}/>
-      <TouchableHeadquarters style={{justifyContent: "flex-start"}} onPress={() => GameServer.spawnFriendlyUnit() }/>
+      <TouchableHeadquarters style={{justifyContent: "flex-start"}} onPress={this.props.onFriendlyPress}/>
       <TouchableHeadquarters style={{justifyContent: "flex-end"}} onPress={() => GameServer.spawnEnemyUnit() }/>
     </Image>
   }
 }
 
 Map.propTypes = {
-  show: PropTypes.bool
+  show: PropTypes.bool,
+  onFriendlyPress: PropTypes.func.isRequired
 }
 
 function TouchableHeadquarters(props) {

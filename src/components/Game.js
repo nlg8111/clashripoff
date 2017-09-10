@@ -18,7 +18,8 @@ export default class Game extends Component {
     engine.attachView(this)
     this.state = {
       engineState: engine.state,
-      appState: AppState.currentState
+      appState: AppState.currentState,
+      inMultiplayer: false
     }
 
   }
@@ -84,7 +85,7 @@ export default class Game extends Component {
       >
         <StartStateScene />
         <TextButton onPress={() => this.spectate()} text="Online" />
-        <TextButton onPress={() => GameServer.start()} text="Single" />
+        <TextButton onPress={() => this.startGame()} text="Single" />
       </ClosableModal>
 
       <ClosableModal
@@ -101,12 +102,20 @@ export default class Game extends Component {
         <TextButton onPress={() => GameServer.start()} text="Try again" />
       </ClosableModal>
 
-      <Map show={this.shouldShowGameScene()} />
+      <Map onFriendlyPress={() => this.handleFriendlyPress()} show={this.shouldShowGameScene()} />
     </View>
   }
 
+  handleFriendlyPress() {
+    if(this.state.inMultiplayer) {
+      GameServer.spawnFriendlyUnit()
+    } else {
+      engine.spawnFriendlyUnit()
+    }
+  }
+
   spectate() {
-    console.warn("Starting to spectate...")
+    this.setState({inMultiplayer: true})
     GameServer.subscribe("start", () => {
       GameServer.subscribe("spawn", (event) => {
         if(event.team === "friendly") {
