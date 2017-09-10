@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import {
   Text
 } from "react-native"
@@ -15,5 +16,5 @@ export default class EndStateScene extends React.Component {
 }
 
 EndStateScene.propTypes = {
-  message: React.PropTypes.string
+  message: PropTypes.string
 }

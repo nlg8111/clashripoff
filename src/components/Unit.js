@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {View, Image} from "react-native"
 import styles from "../styles"
 import unit1 from "../assets/player_1_static.png"
@@ -31,12 +32,12 @@ export default class Unit extends Component {
 }
 
 Unit.propTypes = {
-  position: React.PropTypes.shape({
-    x: React.PropTypes.number,
-    y: React.PropTypes.number,
+  position: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
   }),
-  direction: React.PropTypes.oneOf(["right", "left"]),
-  color: React.PropTypes.string
+  direction: PropTypes.oneOf(["right", "left"]),
+  color: PropTypes.string
 }
 
 
@@ -68,7 +69,7 @@ function UnitImage(props) {
 }
 
 UnitImage.propTypes = {
-  source: React.PropTypes.number,
-  tint: React.PropTypes.string,
-  direction: React.PropTypes.oneOf(["right", "left"]),
+  source: PropTypes.number,
+  tint: PropTypes.string,
+  direction: PropTypes.oneOf(["right", "left"]),
 }

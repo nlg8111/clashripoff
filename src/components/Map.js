@@ -1,11 +1,12 @@
 import React from "react"
+import PropTypes from "prop-types"
 import {Image, View} from "react-native"
 import Lane from "./Lane"
 import Headquarters from "./Headquarters"
 import singleLineMap from "../assets/map_single_line.png"
 import styles from "../styles"
 import Touchable from "./Touchable"
-import engine from "../gameLogic/Engine"
+import GameServer from "../services/GameServer"
 
 export default class Map extends React.Component {
   constructor() {
@@ -37,14 +38,15 @@ export default class Map extends React.Component {
       onLayout={this.storeSize.bind(this)}
     >
       <Lane progressToPosition={this.progressToHorizontalLane.bind(this)}/>
-      <TouchableHeadquarters style={{justifyContent: "flex-start"}} onPress={() => engine.spawnFriendlyUnit() }/>
-      <TouchableHeadquarters style={{justifyContent: "flex-end"}} onPress={() => engine.spawnEnemyUnit() }/>
+      <TouchableHeadquarters style={{justifyContent: "flex-start"}} onPress={this.props.onFriendlyPress}/>
+      <TouchableHeadquarters style={{justifyContent: "flex-end"}} onPress={() => GameServer.spawnEnemyUnit() }/>
     </Image>
   }
 }
 
 Map.propTypes = {
-  show: React.PropTypes.bool
+  show: PropTypes.bool,
+  onFriendlyPress: PropTypes.func.isRequired
 }
 
 function TouchableHeadquarters(props) {
@@ -64,6 +66,6 @@ function TouchableHeadquarters(props) {
 }
 
 TouchableHeadquarters.propTypes = {
-  onPress: React.PropTypes.func,
-  style: React.PropTypes.object
+  onPress: PropTypes.func,
+  style: PropTypes.object
 }

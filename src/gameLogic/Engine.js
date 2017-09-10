@@ -3,7 +3,6 @@ import Ticker from "./Ticker"
 import Player from "./Player"
 import Unit from "./Unit"
 import MovementPattern from "./MovementPattern"
-import ArtificialIntelligence from "./ArtificialIntelligence"
 import GameStates from "./GameStates"
 
 class Engine {
@@ -20,7 +19,6 @@ class Engine {
 
     this.human = new Player("rgba(0, 255, 0, 0.15)", 0.0)
     this.computer = new Player("rgba(255, 0, 0, 0.15)", 1.0)
-    this.computerAi = new ArtificialIntelligence(this.spawnEnemyUnit.bind(this))
 
     this.boardState = new BoardState()
   }
@@ -39,7 +37,6 @@ class Engine {
     this.boardState.killCombattingUnits()
     this.boardState.removeDeadUnits()
     this.checkForGameOverConditions()
-    this.computerAi.tick()
     this.views.forEach(v => v.update())
   }
 

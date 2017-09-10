@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import PropTypes from "prop-types"
 import {View} from "react-native"
 import Unit from "./Unit"
 import styles from "../styles"
@@ -41,5 +42,5 @@ export default class Lane extends Component {
 }
 
 Lane.propTypes = {
-  progressToPosition: React.PropTypes.func
+  progressToPosition: PropTypes.func
 }

@@ -1,11 +1,10 @@
 import React from "react"
-import {View, Text, Modal, TouchableHighlight} from "react-native"
+import PropTypes from "prop-types"
+import {View, Modal} from "react-native"
 import styles from "../styles"
 
 export default class ClosableModal extends React.Component {
   render() {
-    const buttonText = this.props.buttonText || "Close"
-
     return (
       <Modal
         animationType={"fade"}
@@ -16,14 +15,6 @@ export default class ClosableModal extends React.Component {
       >
         <View style={[styles.centerContent, styles.background]}>
           {this.props.children}
-
-          {this.props.onClose ? (
-              <TouchableHighlight onPress={() => {
-                this.props.onClose()
-              }}>
-                <Text style={styles.button}>{buttonText}</Text>
-              </TouchableHighlight>
-            ) : ""}
         </View>
       </Modal>
     )
@@ -31,9 +22,9 @@ export default class ClosableModal extends React.Component {
 }
 
 ClosableModal.propTypes = {
-  children: React.PropTypes.node.isRequired,
-  show: React.PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  show: PropTypes.bool.isRequired,
 
-  buttonText: React.PropTypes.string,
-  onClose: React.PropTypes.func
+  buttonText: PropTypes.string,
+  onClose: PropTypes.func
 }
