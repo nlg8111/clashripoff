@@ -1,12 +1,11 @@
-import _ from "lodash"
+import _ from 'lodash'
 
 export default class CombatDetection {
-
-  constructor(units) {
+  constructor (units) {
     this.units = units
   }
 
-  getCombats() {
+  getCombats () {
     const getUnitColor = unit => unit.getPlayer().getColor()
     const unitsByColor = Object.values(_.groupBy(this.units, getUnitColor))
     if (unitsByColor.length < 2) {
@@ -15,7 +14,7 @@ export default class CombatDetection {
     return this._getCollisionPairs(unitsByColor[0], unitsByColor[1])
   }
 
-  _getCollisionPairs(unitsA, unitsB) {
+  _getCollisionPairs (unitsA, unitsB) {
     let collisionPairs = []
     for (let aIndex = 0; aIndex < unitsA.length; aIndex++) {
       for (let bIndex = 0; bIndex < unitsB.length; bIndex++) {
@@ -28,5 +27,4 @@ export default class CombatDetection {
     }
     return collisionPairs
   }
-
 }

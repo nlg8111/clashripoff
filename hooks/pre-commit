@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function eslintStagedJavascriptFiles() {
-  git diff --name-only --cached | grep js$ | xargs eslint
+  git diff --name-only --cached | grep js$ | xargs standard
 }
 
 function runUnitTests() {

@@ -1,8 +1,8 @@
-import React from "react"
-import {View, TouchableWithoutFeedback} from "react-native"
-import stylePropType from "react-style-proptype"
+import React from 'react'
+import { TouchableWithoutFeedback, View } from 'react-native'
+import stylePropType from 'react-style-proptype'
 
-export default function Touchable(props) {
+export default function Touchable (props) {
   return (
     <TouchableWithoutFeedback
       onPress={props.onPress}

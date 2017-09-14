@@ -1,6 +1,5 @@
 export default class MovementPattern {
-
-  constructor(origin, destination) {
+  constructor (origin, destination) {
     this.origin = origin
     this.destination = destination
     this.speed = 0.01
@@ -8,34 +7,31 @@ export default class MovementPattern {
     this.currentLocation = origin
   }
 
-  getCurrentLocation() {
+  getCurrentLocation () {
     return this.currentLocation
   }
 
-  isAtDestination() {
+  isAtDestination () {
     return this.getCurrentLocation() === this.getDestination()
   }
 
-  step() {
+  step () {
     this.currentLocation = Math.round(this.determineNextStep() * 100) / 100
   }
 
-  determineNextStep() {
+  determineNextStep () {
     if (this.currentLocation === this.destination) {
       return this.destination
-    }
-    else if (Math.abs(this.currentLocation - this.destination) < this.speed) {
+    } else if (Math.abs(this.currentLocation - this.destination) < this.speed) {
       return this.destination
-    }
-    else if (this.currentLocation < this.destination) {
+    } else if (this.currentLocation < this.destination) {
       return this.currentLocation + this.speed
-    }
-    else {
+    } else {
       return this.currentLocation - this.speed
     }
   }
 
-  getDestination() {
+  getDestination () {
     return this.destination
   }
 }

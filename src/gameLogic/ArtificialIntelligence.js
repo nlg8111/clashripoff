@@ -1,13 +1,11 @@
 export default class ArtificialIntelligence {
-
-  constructor(spawnUnitCallback) {
+  constructor (spawnUnitCallback) {
     this.spawnUnitCallback = spawnUnitCallback
   }
 
-  tick() {
+  tick () {
     if (Math.random() < 0.01) {
       this.spawnUnitCallback()
     }
   }
-
 }

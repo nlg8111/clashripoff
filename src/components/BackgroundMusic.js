@@ -1,26 +1,25 @@
-const Sound = require("react-native-sound")
+const Sound = require('react-native-sound')
 
 class BackgroundMusic {
-
-  constructor() {
+  constructor () {
     this.shouldPlay = false
     this.audioTrack = this.buildAudioTrack()
   }
 
-  play() {
+  play () {
     this.audioTrack.play()
     this.shouldPlay = true
   }
 
-  pause() {
+  pause () {
     this.audioTrack.pause()
     this.shouldPlay = false
   }
 
-  buildAudioTrack() {
-    let track = new Sound("battleinthewinter.mp3", Sound.MAIN_BUNDLE, error => {
+  buildAudioTrack () {
+    let track = new Sound('battleinthewinter.mp3', Sound.MAIN_BUNDLE, error => {
       if (error) {
-        console.warn("Could not load background music")
+        console.warn('Could not load background music')
         return
       }
       if (this.shouldPlay) {
@@ -30,7 +29,6 @@ class BackgroundMusic {
     track.setNumberOfLoops(-1)
     return track
   }
-
 }
 
 export default new BackgroundMusic()
