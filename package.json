@@ -6,15 +6,16 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "standard 'src/**/*.js' 'src/**/*.jsx' | snazzy",
-    "lint:fix": "standard 'src/**/*.js' 'src/**/*.jsx' --fix | snazzy"
+    "lint:fix": "standard 'src/**/*.js' 'src/**/*.jsx' --fix | snazzy",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "lodash": "^4.17.4",
     "react": "^15.4.1",
     "react-native": "^0.39.0",
     "react-native-sound": "^0.8.3",
+    "react-native-version": "^2.3.1",
     "react-style-proptype": "^1.4.0",
-    "version": "^0.1.2",
     "whatwg-fetch": "^1.1.0"
   },
   "jest": {
