@@ -1,5 +1,5 @@
 import React from 'react'
-import {Image, View} from 'react-native'
+import { Image, View } from 'react-native'
 import Lane from './Lane'
 import Headquarters from './Headquarters'
 import singleLineMap from '../assets/map_single_line.png'

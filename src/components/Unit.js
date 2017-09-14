@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {View, Image} from 'react-native'
+import React, { Component } from 'react'
+import { Image, View } from 'react-native'
 import styles from '../styles'
 import unit1 from '../assets/player_1_static.png'
 

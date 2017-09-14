@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  Image
-} from 'react-native'
+import { Image } from 'react-native'
 
 const gameLogo = require('../../resources/logo.png')
 
@@ -11,7 +9,7 @@ export default class StartStateScene extends React.Component {
       <Image
         source={gameLogo}
         style={{width: 200, height: 300}}
-        />
+      />
     )
   }
 }

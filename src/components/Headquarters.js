@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Image, StyleSheet} from 'react-native'
+import React, { Component } from 'react'
+import { Image, StyleSheet } from 'react-native'
 import hq1 from '../assets/player_1_hq.png'
 
 export default class Headquarters extends Component {

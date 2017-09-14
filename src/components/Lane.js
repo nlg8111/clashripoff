@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {View} from 'react-native'
+import React, { Component } from 'react'
+import { View } from 'react-native'
 import Unit from './Unit'
 import styles from '../styles'
 import engine from '../gameLogic/Engine'

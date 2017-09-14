@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { AppState, View } from 'react-native'
 import StartStateScene from './StartStateScene'
 import EndStateScene from './EndStateScene'

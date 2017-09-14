@@ -1,4 +1,4 @@
-import {generateUUID} from '../utils'
+import { generateUUID } from '../utils'
 
 export default class Unit {
   constructor (player, movementPattern) {

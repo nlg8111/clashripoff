@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, Modal, TouchableHighlight} from 'react-native'
+import { Modal, Text, TouchableHighlight, View } from 'react-native'
 import styles from '../styles'
 
 export default class ClosableModal extends React.Component {
@@ -23,7 +23,7 @@ export default class ClosableModal extends React.Component {
             }}>
               <Text style={styles.button}>{buttonText}</Text>
             </TouchableHighlight>
-            ) : ''}
+          ) : ''}
         </View>
       </Modal>
     )

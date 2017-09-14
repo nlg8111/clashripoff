@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  Text
-} from 'react-native'
+import { Text } from 'react-native'
 import styles from '../styles'
 
 export default class EndStateScene extends React.Component {
@@ -9,7 +7,7 @@ export default class EndStateScene extends React.Component {
     const message = this.props.message || 'The game has ended!'
 
     return (
-      <Text style={styles.text}>{ message }</Text>
+      <Text style={styles.text}>{message}</Text>
     )
   }
 }
