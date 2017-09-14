@@ -1,16 +1,16 @@
-import React from "react"
+import React from 'react'
 import {
   Image
-} from "react-native"
+} from 'react-native'
 
-const gameLogo = require("../../resources/logo.png")
+const gameLogo = require('../../resources/logo.png')
 
 export default class StartStateScene extends React.Component {
-  render() {
+  render () {
     return (
-        <Image
-          source={gameLogo}
-          style={{width: 200, height: 300}}
+      <Image
+        source={gameLogo}
+        style={{width: 200, height: 300}}
         />
     )
   }

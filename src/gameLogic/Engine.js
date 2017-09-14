@@ -1,40 +1,39 @@
-import BoardState from "./BoardState"
-import Ticker from "./Ticker"
-import Player from "./Player"
-import Unit from "./Unit"
-import MovementPattern from "./MovementPattern"
-import ArtificialIntelligence from "./ArtificialIntelligence"
-import GameStates from "./GameStates"
+import BoardState from './BoardState'
+import Ticker from './Ticker'
+import Player from './Player'
+import Unit from './Unit'
+import MovementPattern from './MovementPattern'
+import ArtificialIntelligence from './ArtificialIntelligence'
+import GameStates from './GameStates'
 
 class Engine {
-
-  constructor() {
+  constructor () {
     this.initialize()
     this.views = []
   }
 
-  initialize() {
+  initialize () {
     this.state = GameStates.UNSTARTED
 
     this.ticker = new Ticker(this.tick.bind(this))
 
-    this.human = new Player("rgba(0, 255, 0, 0.15)", 0.0)
-    this.computer = new Player("rgba(255, 0, 0, 0.15)", 1.0)
+    this.human = new Player('rgba(0, 255, 0, 0.15)', 0.0)
+    this.computer = new Player('rgba(255, 0, 0, 0.15)', 1.0)
     this.computerAi = new ArtificialIntelligence(this.spawnEnemyUnit.bind(this))
 
     this.boardState = new BoardState()
   }
 
-  start() {
+  start () {
     this.ticker.start()
     this.state = GameStates.IN_PROGRESS
   }
 
-  reset() {
+  reset () {
     this.initialize()
   }
 
-  tick() {
+  tick () {
     this.boardState.advanceUnits()
     this.boardState.killCombattingUnits()
     this.boardState.removeDeadUnits()
@@ -43,31 +42,29 @@ class Engine {
     this.views.forEach(v => v.update())
   }
 
-  checkForGameOverConditions() {
+  checkForGameOverConditions () {
     let unitsReachedOpposingCastle = this.boardState.getUnits().filter(u => u.hasReachedDestination())
     if (unitsReachedOpposingCastle.length >= 1) {
       if (unitsReachedOpposingCastle[0].player === this.human) {
         this.state = GameStates.WON
-      }
-      else {
+      } else {
         this.state = GameStates.LOST
       }
       this.ticker.stop()
     }
   }
 
-  spawnFriendlyUnit() {
+  spawnFriendlyUnit () {
     this.boardState.addUnit(new Unit(this.human, new MovementPattern(this.human.hqLocation, this.computer.hqLocation)))
   }
 
-  spawnEnemyUnit() {
+  spawnEnemyUnit () {
     this.boardState.addUnit(new Unit(this.computer, new MovementPattern(this.computer.hqLocation, this.human.hqLocation)))
   }
 
-  attachView(view) {
+  attachView (view) {
     this.views.push(view)
   }
-
 }
 
 export default new Engine()

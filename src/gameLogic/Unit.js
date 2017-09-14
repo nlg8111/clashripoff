@@ -1,8 +1,7 @@
-import {generateUUID} from "../utils"
+import {generateUUID} from '../utils'
 
 export default class Unit {
-
-  constructor(player, movementPattern) {
+  constructor (player, movementPattern) {
     this.player = player
     this.movementPattern = movementPattern
     this.alive = true
@@ -10,31 +9,31 @@ export default class Unit {
     this.uuid = generateUUID()
   }
 
-  advance() {
+  advance () {
     this.movementPattern.step()
   }
 
-  getLocation() {
+  getLocation () {
     return this.movementPattern.getCurrentLocation()
   }
 
-  getPlayer() {
+  getPlayer () {
     return this.player
   }
 
-  kill() {
+  kill () {
     this.alive = false
   }
 
-  isAlive() {
+  isAlive () {
     return this.alive
   }
 
-  collidesWith(unitB) {
+  collidesWith (unitB) {
     return Math.abs(this.getLocation() - unitB.getLocation()) <= this.hitBox
   }
 
-  hasReachedDestination() {
+  hasReachedDestination () {
     return this.movementPattern.isAtDestination()
   }
 }

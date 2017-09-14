@@ -1,14 +1,14 @@
-import React from "react"
-import {View, Text, Modal, TouchableHighlight} from "react-native"
-import styles from "../styles"
+import React from 'react'
+import {View, Text, Modal, TouchableHighlight} from 'react-native'
+import styles from '../styles'
 
 export default class ClosableModal extends React.Component {
-  render() {
-    const buttonText = this.props.buttonText || "Close"
+  render () {
+    const buttonText = this.props.buttonText || 'Close'
 
     return (
       <Modal
-        animationType={"fade"}
+        animationType={'fade'}
         transparent={false}
         visible={this.props.show}
         onRequestClose={() => {
@@ -18,12 +18,12 @@ export default class ClosableModal extends React.Component {
           {this.props.children}
 
           {this.props.onClose ? (
-              <TouchableHighlight onPress={() => {
-                this.props.onClose()
-              }}>
-                <Text style={styles.button}>{buttonText}</Text>
-              </TouchableHighlight>
-            ) : ""}
+            <TouchableHighlight onPress={() => {
+              this.props.onClose()
+            }}>
+              <Text style={styles.button}>{buttonText}</Text>
+            </TouchableHighlight>
+            ) : ''}
         </View>
       </Modal>
     )

@@ -1,15 +1,13 @@
 export default class Ticker {
-
-  constructor(callback) {
+  constructor (callback) {
     this.callback = callback
   }
 
-  start() {
+  start () {
     this.handle = setInterval(this.callback, 1000 / 60)
   }
 
-  stop() {
+  stop () {
     clearInterval(this.handle)
   }
-
 }

@@ -1,34 +1,32 @@
-import CombatDetection from "./CombatDetection"
+import CombatDetection from './CombatDetection'
 
 export default class BoardState {
-
-  constructor() {
+  constructor () {
     this.units = []
   }
 
-  addUnit(unit) {
+  addUnit (unit) {
     this.units.push(unit)
   }
 
-  getUnits() {
+  getUnits () {
     return this.units
   }
 
-  advanceUnits() {
+  advanceUnits () {
     this.units.forEach((u) => u.advance())
   }
 
-  killCombattingUnits() {
+  killCombattingUnits () {
     const combatDetection = new CombatDetection(this.units)
     combatDetection.getCombats().forEach(participants => {
       participants.forEach(unit => unit.kill())
     })
   }
 
-  removeDeadUnits() {
+  removeDeadUnits () {
     this.units = this.units.filter(unit => {
       return unit.isAlive()
     })
   }
-
 }

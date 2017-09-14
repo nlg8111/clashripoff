@@ -1,16 +1,16 @@
-import React, {Component} from "react"
-import { AppState, View} from "react-native"
-import StartStateScene from "./StartStateScene"
-import EndStateScene from "./EndStateScene"
-import Map from "./Map"
-import styles from "../styles"
-import engine from "../gameLogic/Engine"
-import GameStates from "../gameLogic/GameStates"
-import ClosableModal from "./ClosableModal"
-import backgroundMusic from "./BackgroundMusic"
+import React, {Component} from 'react'
+import { AppState, View } from 'react-native'
+import StartStateScene from './StartStateScene'
+import EndStateScene from './EndStateScene'
+import Map from './Map'
+import styles from '../styles'
+import engine from '../gameLogic/Engine'
+import GameStates from '../gameLogic/GameStates'
+import ClosableModal from './ClosableModal'
+import backgroundMusic from './BackgroundMusic'
 
 export default class Game extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     engine.attachView(this)
@@ -19,38 +19,36 @@ export default class Game extends Component {
       engineState: engine.state,
       appState: AppState.currentState
     }
-
   }
 
-  componentDidMount() {
+  componentDidMount () {
     backgroundMusic.play()
-    AppState.addEventListener("change", this._handleAppStateChange.bind(this))
+    AppState.addEventListener('change', this._handleAppStateChange.bind(this))
   }
 
-  componentWillUnmount() {
-    AppState.removeEventListener("change", this._handleAppStateChange.bind(this))
+  componentWillUnmount () {
+    AppState.removeEventListener('change', this._handleAppStateChange.bind(this))
   }
 
-  _handleAppStateChange(nextAppState) {
-    if (this.state.appState.match(/inactive|background/) && nextAppState === "active") {
+  _handleAppStateChange (nextAppState) {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       backgroundMusic.play()
-    }
-    else {
+    } else {
       backgroundMusic.pause()
     }
     this.setState({appState: nextAppState})
   }
 
-  startGame() {
+  startGame () {
     engine.start.bind(engine)()
   }
 
-  restartGame() {
+  restartGame () {
     engine.reset.bind(engine)()
     this.startGame()
   }
 
-  update() {
+  update () {
     if (engine.state !== this.state.engineState) {
       this.setState({
         engineState: engine.state
@@ -58,28 +56,28 @@ export default class Game extends Component {
     }
   }
 
-  shouldShowStartScene() {
+  shouldShowStartScene () {
     return this.state.engineState === GameStates.UNSTARTED
   }
 
-  shouldShowWinScene() {
+  shouldShowWinScene () {
     return this.state.engineState === GameStates.WON
   }
 
-  shouldShowLossScene() {
+  shouldShowLossScene () {
     return this.state.engineState === GameStates.LOST
   }
 
-  shouldShowGameScene() {
+  shouldShowGameScene () {
     return this.state.engineState === GameStates.IN_PROGRESS
   }
 
-  render() {
+  render () {
     return <View style={[styles.centerContent, styles.background]}>
       <ClosableModal
         show={this.shouldShowStartScene()}
         onClose={() => this.startGame()}
-        buttonText="Start"
+        buttonText='Start'
       >
         <StartStateScene />
       </ClosableModal>
@@ -87,17 +85,17 @@ export default class Game extends Component {
       <ClosableModal
         show={this.shouldShowWinScene()}
         onClose={() => this.restartGame()}
-        buttonText="New match!"
+        buttonText='New match!'
       >
-        <EndStateScene message="YOU SHOWED THEM, ALLRIGHT!" />
+        <EndStateScene message='YOU SHOWED THEM, ALLRIGHT!' />
       </ClosableModal>
 
       <ClosableModal
         show={this.shouldShowLossScene()}
         onClose={() => this.restartGame()}
-        buttonText="Try again"
+        buttonText='Try again'
       >
-        <EndStateScene message="Oh no, the AI beat you :(" />
+        <EndStateScene message='Oh no, the AI beat you :(' />
       </ClosableModal>
 
       <Map show={this.shouldShowGameScene()} />

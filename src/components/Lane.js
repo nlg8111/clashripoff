@@ -1,12 +1,11 @@
-import React, {Component} from "react"
-import {View} from "react-native"
-import Unit from "./Unit"
-import styles from "../styles"
-import engine from "../gameLogic/Engine"
+import React, {Component} from 'react'
+import {View} from 'react-native'
+import Unit from './Unit'
+import styles from '../styles'
+import engine from '../gameLogic/Engine'
 
 export default class Lane extends Component {
-
-  constructor() {
+  constructor () {
     super()
 
     engine.attachView(this)
@@ -16,12 +15,12 @@ export default class Lane extends Component {
     }
   }
 
-  update() {
+  update () {
     this.setState({
       units: engine.boardState.getUnits().map(unit =>
         <Unit
           position={this.props.progressToPosition(unit.getLocation())}
-          direction={unit.player.hqLocation === 0 ? "right" : "left"}
+          direction={unit.player.hqLocation === 0 ? 'right' : 'left'}
           color={unit.player.color}
           key={unit.uuid}
         />
@@ -29,13 +28,13 @@ export default class Lane extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
-        <View style={[styles.fillContainer, {
-          overflow: "hidden",
-        }]}>
-          {this.state.units}
-        </View>
+      <View style={[styles.fillContainer, {
+        overflow: 'hidden'
+      }]}>
+        {this.state.units}
+      </View>
     )
   }
 }
