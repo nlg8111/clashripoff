@@ -17,7 +17,7 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
   end
 
   desc "Runs all the tests"
@@ -28,14 +28,23 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
+    slack(
+      message: "Deploying Beta..."
+    )
     match(
       type: "appstore",
       git_url: "git@bitbucket.org:NikkiLoveGod/certificates.git"
     )
     gym(scheme: "clashripoff") # Build your app - more options available
-    pilot
+    pilot(
+      distribute_external: true,
+      changelog: "Minor fixes and enhancements",
+      beta_app_feedback_email: "sami.kurvinen@gmail.com",
+      distribute_external: true,
+      beta_app_description: "QA Version app",
+    )
     slack(
-      message: "Deployed Appstore Beta"
+      message: "Deployed Beta to Testflight"
     )
   end
 
