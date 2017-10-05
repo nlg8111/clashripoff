@@ -28,6 +28,11 @@ project.xcworkspace
 .idea
 .gradle
 local.properties
+.apk
+
+# Fastlane
+*.app.*.zip
+google-service-account-fastlane.json
 
 # node.js
 #
