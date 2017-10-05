@@ -328,6 +328,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		74DE48441F73E74B0012B3C9 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A615A241D4C24311AE03AC05 /* libRNSound.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +380,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* clashripoffTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				74DE48441F73E74B0012B3C9 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
