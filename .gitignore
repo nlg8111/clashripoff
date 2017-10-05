@@ -32,6 +32,7 @@ local.properties
 
 # Fastlane
 *.app.*.zip
+google-service-account-fastlane.json
 
 # node.js
 #
