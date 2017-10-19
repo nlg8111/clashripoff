@@ -31,7 +31,9 @@ export default class Lane extends Component {
   render () {
     return (
       <View style={[styles.fillContainer, {
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderWidth: 2,
+        borderColor: 'green'
       }]}>
         {this.state.units}
       </View>
