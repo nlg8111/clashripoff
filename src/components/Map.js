@@ -1,7 +1,6 @@
 import React from 'react'
-import { Image, View } from 'react-native'
+import { Image } from 'react-native'
 import Lane from './Lane'
-import Headquarters from './Headquarters'
 import singleLineMap from '../assets/map_single_line.png'
 import styles from '../styles'
 import Touchable from './Touchable'
@@ -19,26 +18,28 @@ export default class Map extends React.Component {
     this.height = event.nativeEvent.layout.height
   }
 
-  progressToHorizontalLane (progress) {
+  progressToVerticalLine (progress) {
     const margins = 35
-    const centerY = this.height / 2
-    const verticalOffset = 30
+    const centerX = this.width / 2
+    const horizontalOffset = 0
 
     return {
-      x: progress * (this.width - margins * 2) + margins,
-      y: centerY + verticalOffset
+      x: centerX + horizontalOffset,
+      y: this.height - (progress * (this.height + margins * 2) - margins)
     }
   }
 
   render () {
     return <Image
       source={singleLineMap}
-      style={[styles.backgroundImage, {opacity: Number(this.props.show), flexDirection: 'row'}]}
+      style={[styles.backgroundImage, {
+        opacity: Number(this.props.show),
+        flexDirection: 'column'
+      }]}
       onLayout={this.storeSize.bind(this)}
     >
-      <Lane progressToPosition={this.progressToHorizontalLane.bind(this)} />
-      <TouchableHeadquarters style={{justifyContent: 'flex-start'}} onPress={() => engine.spawnFriendlyUnit()} />
-      <TouchableHeadquarters style={{justifyContent: 'flex-end'}} onPress={() => engine.spawnEnemyUnit()} />
+      <Lane progressToPosition={this.progressToVerticalLine.bind(this)} />
+      <UnitSpawnArea onPress={() => engine.spawnFriendlyUnit()} />
     </Image>
   }
 }
@@ -47,22 +48,21 @@ Map.propTypes = {
   show: React.PropTypes.bool
 }
 
-function TouchableHeadquarters (props) {
+function UnitSpawnArea (props) {
   return (
-    <View
-      style={[{
-        flex: 1,
-        flexDirection: 'row',
-        marginTop: -40
+      <Touchable onPress={props.onPress} style={[{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 80,
+        backgroundColor: "rgba(255, 0, 0, 0.2)",
       }, props.style]}>
-      <Touchable onPress={props.onPress}>
-        <Headquarters />
       </Touchable>
-    </View>
   )
 }
 
-TouchableHeadquarters.propTypes = {
+UnitSpawnArea.propTypes = {
   onPress: React.PropTypes.func,
   style: React.PropTypes.object
 }
